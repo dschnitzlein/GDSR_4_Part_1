@@ -1,0 +1,9 @@
+[
+  {
+    "objectID": "GDSR_4_Part_1.html#das-dplyr-paket",
+    "href": "GDSR_4_Part_1.html#das-dplyr-paket",
+    "title": "Datentransformation und Modellierung",
+    "section": "Das dplyr Paket",
+    "text": "Das dplyr Paket\n\n\n\n\n\nAlle Datenmanipulationen und -transformationen die wir in diesem Abschnitt behandeln, können auch in Base R ausgeführt werden.\nAllerdings stellt das tidyverse mit dem dplyr Paket ein Werkzeug zur Verfügung, das die Arbeit mit Daten und speziell komplexeren Daten deutlich vereinfacht.\nWir nutzen dplyr in diesem Kurs mit Datensätzen, die im DataFrame oder Tibble Format vorliegen.\ndplyr kann aber auch mit larger-than-memory Datensätzen z.B. auf AWS (arrow) oder Apache Spark (sparklyr) zusammenarbeiten.\nEbenso steht mit dbplyr eine Anbindung an SQL zur Verfügung und via duckplyr an DuckDB.\n\n\n\nTEst\n\n\n\n\nGitHub-Repo: https://github.com/dschnitzlein/GDSR_3_Part_1/"
+  }
+]

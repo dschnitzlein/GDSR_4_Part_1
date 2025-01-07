@@ -1,0 +1,52 @@
+---
+title: "Datentransformation und Modellierung"
+subtitle: "Grundlagen der Datenanalyse und Statistik mit R | WS 2024/25"
+author: "Prof. Dr. Daniel Schnitzlein"
+footer: "GitHub-Repo: <https://github.com/dschnitzlein/GDSR_3_Part_1/>"
+engine: knitr
+format: 
+  live-revealjs:
+    theme: [default, custom.scss]
+    progress: true
+    slide-number: true
+    width: 1400
+    resources: 
+      - data
+    title-slide-attributes:
+      data-background-color: "#2A4D69"
+      data-background-image: "/images/logo.png"
+      data-background-size: "30%"
+      data-background-position: "center right 20px"
+css: custom.css
+editor: visual
+---
+
+{{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
+
+# `dplyr`-Paket
+
+## Das `dplyr` Paket
+
+<br>
+
+:::::: columns
+:::: {.column width="60%"}
+::: incremental
+-   Alle Datenmanipulationen und -transformationen die wir in diesem Abschnitt behandeln, können auch in Base R ausgeführt werden.
+
+-   Allerdings stellt das `tidyverse` mit dem `dplyr` Paket ein Werkzeug zur Verfügung, das die Arbeit mit Daten und speziell komplexeren Daten deutlich vereinfacht.
+
+-   Wir nutzen `dplyr` in diesem Kurs mit Datensätzen, die im DataFrame oder Tibble Format vorliegen.
+
+-   `dplyr` kann aber auch mit larger-than-memory Datensätzen z.B. auf AWS (`arrow`) oder Apache Spark (`sparklyr`) zusammenarbeiten.
+
+-   Ebenso steht mit `dbplyr` eine Anbindung an SQL zur Verfügung und via `duckplyr` an DuckDB.
+:::
+::::
+
+::: {.column width="40%"}
+TEst
+:::
+::::::
+
+
