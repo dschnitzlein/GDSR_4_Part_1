@@ -48,7 +48,7 @@ library(ggthemes)
 
 . . .
 
-:::{.incremental}
+::: incremental
 -   Themes haben `keinen` Einfluss darauf, wie die Daten dargestellt oder ob und wie sie transformiert werden.
 
 -   Themes ändern die Eigenschaften eines Plots `nicht`, aber sie helfen, den Plot ästhetisch ansprechend zu gestalten oder an einen bestehenden Styleguide anzupassen. Themes steuern Elemente wie z.B. Schriftarten, Ticks, Hintergründe etc.
@@ -58,7 +58,6 @@ library(ggthemes)
 -   Ein einheitliches Erscheinungsbild (das nicht einfach die Standardeinstellungen nutzt) wirkt professioneller und überzeugender verglichen mit wild zusammengewürfelten Designs.
 
 -   Individuelle Themes können in `R` vordefiniert werden und müssen daher nur einmal erstellt werden und können dann auf alle Arten von Abbildungen angewendet werden.
-
 :::
 
 ## Kernelemente des `ggplot2`-Theme-Systems
@@ -66,7 +65,7 @@ library(ggthemes)
 <br>
 
 |  |  |  |
-|------------------|---------------------------|---------------------------|
+|-------------------|---------------------------|---------------------------|
 | `elements` | Definiert das Objekt, das verändert werden soll. | z.B. `plot.title` oder `axis.ticks.x` usw. Eine vollständige Liste aller `elements` findet sich [hier](https://ggplot2.tidyverse.org/reference/theme.html). |
 | `element function` | Jedes `element` ist mit einer oder mehreren `element functions` verbunden. | z.B. `element_text(...)` definiert die Schriftgröße, Schriftart, Farbe etc. von `plot.title`. |
 | `theme(...)` | Funktion um die Änderungen durchzuführen. | z.B. `theme(plot.title = element_text(colour = "red"))` |
@@ -97,7 +96,7 @@ ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
 <br>
 
 |  |  |
-|------------------------|------------------------------------------------|
+|------------------------|-----------------------------------------------|
 | `theme_gray()` | Das charakteristische ggplot2-Design mit grauem Hintergrund und weißen Gitterlinien, das die Daten hervorhebt und Vergleiche erleichtert. |
 | `theme_bw()` | Variation des klassische „dark-on-light“-ggplot2-Themes. Eignet sich möglicherweise besser für die Anzeige mit einem Beamer. |
 | `theme_linedraw()` | Theme nutzt nur schwarzen Linien unterschiedlicher Breite auf weißem Hintergrund. |
@@ -243,7 +242,7 @@ ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
 <br>
 
 | Element | Funktion | Beschreibung |
-|-----------------|-----------------|---------------------------------------|
+|------------------|------------------|-------------------------------------|
 | plot.background | `element_rect()` | Hintergrund der Abbildung (ohne Daten) |
 | plot.title | `element_text()` | Titel der Abbildung |
 | plot.margin | `margin()` | Margins um die Abbildung |
@@ -254,7 +253,7 @@ ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
 <br>
 
 | Element           | Funktion         | Beschreibung                           |
-|------------------|------------------|-------------------------------------|
+|------------------|------------------|------------------------------------|
 | axis.line         | `element_line()` | Achsenlinie (in std. Themes versteckt) |
 | axis.text         | `element_text()` | Labels der Achsenticks                 |
 | axis.text.x       | `element_text()` | x-Achsentickslabels                    |
@@ -270,7 +269,7 @@ ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
 <br>
 
 | Element | Funktion | Beschreibung |
-|------------------|------------------|------------------------------------|
+|-------------------|-------------------|------------------------------------|
 | legend.background | `element_rect()` | Legendenhintergrund |
 | legend.key | `element_rect()` | Hintergrund der Legendeneinträge |
 | legend.key.size | `unit()` | Größe der Legendeneinträge |
@@ -320,7 +319,7 @@ ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
 <br>
 
 |  |  |
-|-------------|-----------------------------------------------------------|
+|----------------|--------------------------------------------------------|
 | `element_text(...)` | Kontrolliert Schriftart (`family`), Typ (`face`), Farbe (`colour`), Größe (`size`) usw. |
 | `margin(0,0,0,0)` | Kontrolliert den Rand um ein Objekt |
 | `element_line(...)` | Kontrolliert die Farbe (`colour`), Linienart (`linetype`) und Dicke (`linewidth`) einer Linie |
@@ -406,8 +405,7 @@ ggsave(
 
 Neben der Größe (Breite und Höhe) kann auch die Auflösung (dpi) oder das Farbmodel angegeben werden.
 
-Anmerkung: Die `base`-R Lösung über `pdf()` oder `png()` ist auch mit `ggplot-Objekten möglich. 
-
+Anmerkung: Die `base`-R Lösung über `pdf()` oder `png()` ist auch mit \`ggplot-Objekten möglich.
 
 # 3. Einlesen und Bereinigen von Daten
 
@@ -509,19 +507,20 @@ Weitere Informationen und Optionen zum Umgang mit CSV-Files finden Sie unter `?r
 
 <br>
 
-- Microsoft Excel ist wahrscheinlich das meistgenutze Tabellenkalkulationsprogramm und wahrscheinlich auch das meistgenutze Programm zur (oberflächlichen) Datenanalyse.
+-   Microsoft Excel ist wahrscheinlich das meistgenutze Tabellenkalkulationsprogramm und wahrscheinlich auch das meistgenutze Programm zur (oberflächlichen) Datenanalyse.
 
-- Die Excel-Datenformate sind daher auch häufig genutze Output-Formate für Datengenerierungen und Datenweitergaben (speziell in Unternehmen).
+-   Die Excel-Datenformate sind daher auch häufig genutze Output-Formate für Datengenerierungen und Datenweitergaben (speziell in Unternehmen).
 
-- R kann Excel-Daten u.a. über das Paket `readxl` lesen und via `writexl` schreiben. Die zugehörige Funktion ist `read_excel()`.
+-   R kann Excel-Daten u.a. über das Paket `readxl` lesen und via `writexl` schreiben. Die zugehörige Funktion ist `read_excel()`.
 
-- Anmerkung: R kann auch mit Stata, SPSS, SAS o.ä. Daten umgehen z.B. via des Pakets `haven`.
+-   Anmerkung: R kann auch mit Stata, SPSS, SAS o.ä. Daten umgehen z.B. via des Pakets `haven`.
 
 ## Excel-Daten einlesen (1)
 
 <br>
 
 ```{webr}
+library(readxl)
 
 students <- read_excel("data/students.xlsx")
 
@@ -560,19 +559,15 @@ penguins <- bind_rows(penguins_torgersen, penguins_biscoe, penguins_dream)
 penguins
 ```
 
-
-
 ## Unsere Themenliste
 
 <br>
 
-
-1.  **Einführung in R und R-Studio:** **Überblick über die Installations- und Einrichtungsprozesse \| Grundlegende Funktionen und Bedienung von R und RStudio**
-2.  **Grundlagen der Statistiksprache R: Syntax und Datenstrukturen in R \| Einführung in Funktionen und Pakete**
-3.  **Datenmanagement in R: Methoden der Datenorganisation und -vorbereitung \| Importieren, Bereinigen und Transformieren von Datensätzen**
-4.  **Einführung in die Pakete des tidyverse: Überblick über die wichtigsten tidyverse-Pakete wie z.B. dplyr und ggplot2 \| Anwendung dieser Pakete zur effizienten Datenanalyse und -visualisierung**
-5.  **Deskriptive Statistik in R: Berechnung und Interpretation grundlegender statistischer Kennzahlen \| Anwendung von deskriptiven Methoden zur Datenexploration \| Einführung in die statistische Modellierung am Beispiel linearer Modelle**
-6.  **Datenvisualisierung in R: Erstellen von publikationsreifen Grafiken und Diagrammen mit ggplot2 \| Gestaltung und Interpretation von Datenvisualisierungen zur Unterstützung der Datenanalyse**
-
+1.  Einführung in R und R-Studio: Überblick über die Installations- und Einrichtungsprozesse \| Grundlegende Funktionen und Bedienung von R und RStudio
+2.  Grundlagen der Statistiksprache R: Syntax und Datenstrukturen in R \| Einführung in Funktionen und Pakete
+3.  Datenmanagement in R: Methoden der Datenorganisation und -vorbereitung \| Importieren, Bereinigen und Transformieren von Datensätzen
+4.  Einführung in die Pakete des tidyverse: Überblick über die wichtigsten tidyverse-Pakete wie z.B. dplyr und ggplot2 \| Anwendung dieser Pakete zur effizienten Datenanalyse und -visualisierung
+5.  Deskriptive Statistik in R: Berechnung und Interpretation grundlegender statistischer Kennzahlen \| Anwendung von deskriptiven Methoden zur Datenexploration \| Einführung in die statistische Modellierung am Beispiel linearer Modelle
+6.  Datenvisualisierung in R: Erstellen von publikationsreifen Grafiken und Diagrammen mit ggplot2 \| Gestaltung und Interpretation von Datenvisualisierungen zur Unterstützung der Datenanalyse
 
 Noch offen: Einheitliche und publikationsreife Tabellen (nächste Woche).
