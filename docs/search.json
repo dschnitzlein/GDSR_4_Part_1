@@ -1,9 +1,240 @@
 [
   {
-    "objectID": "GDSR_4_Part_1.html#das-dplyr-paket",
-    "href": "GDSR_4_Part_1.html#das-dplyr-paket",
-    "title": "Datentransformation und Modellierung",
-    "section": "Das dplyr Paket",
-    "text": "Das dplyr Paket\n\n\n\n\n\nAlle Datenmanipulationen und -transformationen die wir in diesem Abschnitt behandeln, können auch in Base R ausgeführt werden.\nAllerdings stellt das tidyverse mit dem dplyr Paket ein Werkzeug zur Verfügung, das die Arbeit mit Daten und speziell komplexeren Daten deutlich vereinfacht.\nWir nutzen dplyr in diesem Kurs mit Datensätzen, die im DataFrame oder Tibble Format vorliegen.\ndplyr kann aber auch mit larger-than-memory Datensätzen z.B. auf AWS (arrow) oder Apache Spark (sparklyr) zusammenarbeiten.\nEbenso steht mit dbplyr eine Anbindung an SQL zur Verfügung und via duckplyr an DuckDB.\n\n\n\nTEst\n\n\n\n\nGitHub-Repo: https://github.com/dschnitzlein/GDSR_3_Part_1/"
+    "objectID": "GDSR_4_Part_1.html#aufgabenblatt-iii-datentransformation-und-modellierung",
+    "href": "GDSR_4_Part_1.html#aufgabenblatt-iii-datentransformation-und-modellierung",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Aufgabenblatt III: Datentransformation und Modellierung",
+    "text": "Aufgabenblatt III: Datentransformation und Modellierung\n(siehe R.Skript auf Moodle und GitHub)."
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#der-ausgangspunkt-nach-dem-zweiten-termin",
+    "href": "GDSR_4_Part_1.html#der-ausgangspunkt-nach-dem-zweiten-termin",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Der Ausgangspunkt nach dem zweiten Termin",
+    "text": "Der Ausgangspunkt nach dem zweiten Termin"
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#warum-soll-ich-ein-theme-nutzen",
+    "href": "GDSR_4_Part_1.html#warum-soll-ich-ein-theme-nutzen",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Warum soll ich ein Theme nutzen?",
+    "text": "Warum soll ich ein Theme nutzen?\n\n\n\n\nThemes haben keinen Einfluss darauf, wie die Daten dargestellt oder ob und wie sie transformiert werden.\nThemes ändern die Eigenschaften eines Plots nicht, aber sie helfen, den Plot ästhetisch ansprechend zu gestalten oder an einen bestehenden Styleguide anzupassen. Themes steuern Elemente wie z.B. Schriftarten, Ticks, Hintergründe etc.\nThemes vereinfachen es, Abbildungen ein einheitliches Erscheinungsbild innerhalb einer Publikation, innerhalb einer Organisation oder eines Web-Auftritts zu geben.\nEin einheitliches Erscheinungsbild (das nicht einfach die Standardeinstellungen nutzt) wirkt professioneller und überzeugender verglichen mit wild zusammengewürfelten Designs.\nIndividuelle Themes können in R vordefiniert werden und müssen daher nur einmal erstellt werden und können dann auf alle Arten von Abbildungen angewendet werden."
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#kernelemente-des-ggplot2-theme-systems",
+    "href": "GDSR_4_Part_1.html#kernelemente-des-ggplot2-theme-systems",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Kernelemente des ggplot2-Theme-Systems",
+    "text": "Kernelemente des ggplot2-Theme-Systems\n\n\n\n\nelements\nDefiniert das Objekt, das verändert werden soll.\nz.B. plot.title oder axis.ticks.x usw. Eine vollständige Liste aller elements findet sich hier.\n\n\nelement function\nJedes element ist mit einer oder mehreren element functions verbunden.\nz.B. element_text(...) definiert die Schriftgröße, Schriftart, Farbe etc. von plot.title.\n\n\ntheme(...)\nFunktion um die Änderungen durchzuführen.\nz.B. theme(plot.title = element_text(colour = \"red\"))\n\n\nvollständige Themes\nVollständige Themes, die entweder bereits vordefiniert oder selbst definiert werden können.\nz.B. theme_bw( )"
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#vollständige-ggplot2-themes-1",
+    "href": "GDSR_4_Part_1.html#vollständige-ggplot2-themes-1",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Vollständige ggplot2-Themes (1)",
+    "text": "Vollständige ggplot2-Themes (1)\n\nggplot2 ermöglicht es anhand von Themes die Formatierung von Abbildungen weitgehend zu automatisieren (z.B. Anwendung von einheitlichem Corporate Design)."
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#vollständige-ggplot2-themes-2",
+    "href": "GDSR_4_Part_1.html#vollständige-ggplot2-themes-2",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Vollständige ggplot2-Themes (2)",
+    "text": "Vollständige ggplot2-Themes (2)\n\n\n\n\n\n\n\n\ntheme_gray()\nDas charakteristische ggplot2-Design mit grauem Hintergrund und weißen Gitterlinien, das die Daten hervorhebt und Vergleiche erleichtert.\n\n\ntheme_bw()\nVariation des klassische „dark-on-light“-ggplot2-Themes. Eignet sich möglicherweise besser für die Anzeige mit einem Beamer.\n\n\ntheme_linedraw()\nTheme nutzt nur schwarzen Linien unterschiedlicher Breite auf weißem Hintergrund.\n\n\ntheme_light()\nEin ähnliches Theme wie theme_linedraw(), aber mit hellgrauen Linien und Achsen, um mehr Aufmerksamkeit auf die Daten zu lenken.\n\n\ntheme_dark()\nDer dunkle Cousin von theme_light(), mit ähnlichen Strichstärken, aber dunklem Hintergrund.\n\n\ntheme_minimal()\nEin minimalistisches Theme ohne Hintergrund.\n\n\ntheme_classic()\nEin klassisch aussehendes Theme mit x- und y-Achsenlinien und ohne Gitterlinien.\n\n\ntheme_void()\nEin komplett leeres Theme.\n\n\ntheme_test()\nEin Theme zum Testen visueller Komponenten. Es sollte sich idealerweise nie ändern, außer bei neuen Funktionen."
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#probieren-sie-es-aus",
+    "href": "GDSR_4_Part_1.html#probieren-sie-es-aus",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Probieren Sie es aus!",
+    "text": "Probieren Sie es aus!"
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#anpassen-der-integrierten-themes",
+    "href": "GDSR_4_Part_1.html#anpassen-der-integrierten-themes",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Anpassen der integrierten themes",
+    "text": "Anpassen der integrierten themes\n\n\nAlle vordefinierten Themes haben einen Parameter base_size() mit dem die Basisschriftgröße (Achsentitel) aller Schriften mit einem Befehl geändert werden kann.\nDabei wird auch die Achsenbeschriftung (0.8x) und der Titel (1.2x) angepasst.\nMit set_theme() kann ein bestimmtes theme als Standardtheme gesetzt werden.\nAlle weitergehenden Änderungen müssen über die Ansprache der entsprechenden Elemente direkt erfolgen."
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#beispiel-änderung-der-farbe-im-titel",
+    "href": "GDSR_4_Part_1.html#beispiel-änderung-der-farbe-im-titel",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Beispiel: Änderung der Farbe im Titel",
+    "text": "Beispiel: Änderung der Farbe im Titel"
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#beispiel-volle-individualisierung",
+    "href": "GDSR_4_Part_1.html#beispiel-volle-individualisierung",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Beispiel: Volle Individualisierung",
+    "text": "Beispiel: Volle Individualisierung"
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#definieren-eigener-themes",
+    "href": "GDSR_4_Part_1.html#definieren-eigener-themes",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Definieren eigener Themes",
+    "text": "Definieren eigener Themes"
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#nutzen-eigener-themes",
+    "href": "GDSR_4_Part_1.html#nutzen-eigener-themes",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Nutzen eigener Themes",
+    "text": "Nutzen eigener Themes"
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#wichtige-themeelemente-1.-plotelemente",
+    "href": "GDSR_4_Part_1.html#wichtige-themeelemente-1.-plotelemente",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Wichtige Themeelemente: 1. Plotelemente",
+    "text": "Wichtige Themeelemente: 1. Plotelemente\n\n\n\n\n\n\n\n\n\nElement\nFunktion\nBeschreibung\n\n\n\n\nplot.background\nelement_rect()\nHintergrund der Abbildung (ohne Daten)\n\n\nplot.title\nelement_text()\nTitel der Abbildung\n\n\nplot.margin\nmargin()\nMargins um die Abbildung\n\n\nplot.title.position\n“panel”, “plot”\nAlignment des Titels entweder mit dem Panel oder Plot"
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#wichtige-themeelemente-2.-achsenelemente",
+    "href": "GDSR_4_Part_1.html#wichtige-themeelemente-2.-achsenelemente",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Wichtige Themeelemente: 2. Achsenelemente",
+    "text": "Wichtige Themeelemente: 2. Achsenelemente\n\n\n\n\n\n\n\n\n\nElement\nFunktion\nBeschreibung\n\n\n\n\naxis.line\nelement_line()\nAchsenlinie (in std. Themes versteckt)\n\n\naxis.text\nelement_text()\nLabels der Achsenticks\n\n\naxis.text.x\nelement_text()\nx-Achsentickslabels\n\n\naxis.text.y\nelement_text()\ny-Achsentickslabels\n\n\naxis.title\nelement_text()\nAchsentitel\n\n\naxis.title.x\nelement_text()\nAchsentitel x-Achse\n\n\naxis.title.y\nelement_text()\nAchsentitel y-Achse\n\n\naxis.ticks\nelement_line()\nAchsentickstriche\n\n\naxis.ticks.length\nunit()\nAchsentickstrichlänge"
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#wichtige-themeelemente-3.-legendenelemente",
+    "href": "GDSR_4_Part_1.html#wichtige-themeelemente-3.-legendenelemente",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Wichtige Themeelemente: 3. Legendenelemente",
+    "text": "Wichtige Themeelemente: 3. Legendenelemente\n\n\n\n\n\n\n\n\n\nElement\nFunktion\nBeschreibung\n\n\n\n\nlegend.background\nelement_rect()\nLegendenhintergrund\n\n\nlegend.key\nelement_rect()\nHintergrund der Legendeneinträge\n\n\nlegend.key.size\nunit()\nGröße der Legendeneinträge\n\n\nlegend.key.height\nunit()\nHöhe der Legendeneinträge\n\n\nlegend.key.width\nunit()\nBreite der Legendeneinträge\n\n\nlegend.margin\nunit()\nMargin um die Legende\n\n\nlegend.text\nelement_text()\nLegenden Labels\n\n\nlegend.text.align\n0–1\nLegenden Label Alignment (0 = rechts, 1 = links)\n\n\nlegend.title\nelement_text()\nLegendenname\n\n\nlegend.title.align\n0–1\nLegendname Alignment (0 = rechts, 1 = links)\n\n\nlegend.position\n“top”, “bottom”, “left”, “inside”, “right”, “none”\nPositionieren der Legende\n\n\nlegend.justification.top\n“left”, “center”, “right”\nPositionieren der Legende (ebenfalls für alle Pos.)\n\n\nlegend.location\n“plot”, “panel”\nAlignment der Legende entweder mit Plot oder Panel"
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#wichtige-themeelemente-4.-panelelemente",
+    "href": "GDSR_4_Part_1.html#wichtige-themeelemente-4.-panelelemente",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Wichtige Themeelemente: 4. Panelelemente",
+    "text": "Wichtige Themeelemente: 4. Panelelemente\n\n\n\n\n\n\n\n\n\nElement\nFunktion\nBeschreibung\n\n\n\n\npanel.background\nelement_rect()\nPanel Hintergrund (unter den Daten)\n\n\npanel.border\nelement_rect()\nPanelrahmen\n\n\npanel.grid.major\nelement_line()\nHauptgridlines\n\n\npanel.grid.major.x\nelement_line()\nHauptgridlines vertikal\n\n\npanel.grid.major.y\nelement_line()\nHauptgridlines horizontal\n\n\npanel.grid.minor\nelement_line()\nMinorgridlines\n\n\npanel.grid.minor.x\nelement_line()\nMinorgridlines vertikal\n\n\npanel.grid.minor.y\nelement_line()\nMinorgridlines horizontal\n\n\naspect.ratio\nnumeric\nPlot aspect ratio"
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#wichtige-themeelemente-5.-facetinglemente",
+    "href": "GDSR_4_Part_1.html#wichtige-themeelemente-5.-facetinglemente",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Wichtige Themeelemente: 5. Facetinglemente",
+    "text": "Wichtige Themeelemente: 5. Facetinglemente\n\n\n\n\n\n\n\n\n\nElement\nFunktion\nBeschreibung\n\n\n\n\nstrip.background\nelement_rect()\nHintergrund der Panel Strips\n\n\nstrip.text\nelement_text()\nStrip Text\n\n\nstrip.text.x\nelement_text()\nHorizontaler Strip Text\n\n\nstrip.text.y\nelement_text()\nVertikaler Strip Text\n\n\npanel.spacing\nunit()\nMargin zwischen Facets\n\n\npanel.spacing.x\nunit()\nMargin zwischen Facets (vertikal)\n\n\npanel.spacing.y\nunit()\nMargin zwischen Facets (horizontal)"
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#wichtige-theme-funktionen",
+    "href": "GDSR_4_Part_1.html#wichtige-theme-funktionen",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Wichtige Theme-Funktionen",
+    "text": "Wichtige Theme-Funktionen\n\n\n\n\n\n\n\n\nelement_text(...)\nKontrolliert Schriftart (family), Typ (face), Farbe (colour), Größe (size) usw.\n\n\nmargin(0,0,0,0)\nKontrolliert den Rand um ein Objekt\n\n\nelement_line(...)\nKontrolliert die Farbe (colour), Linienart (linetype) und Dicke (linewidth) einer Linie\n\n\nelement_rect(...)\nKontrolliert Rechtecke mit den Parametern fill, linewidth, colour und linetype\n\n\nelement_blank(...)\nZeichnet nichts (zum Deaktivieren von Elementen)"
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#aufgabe-1",
+    "href": "GDSR_4_Part_1.html#aufgabe-1",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Aufgabe 1",
+    "text": "Aufgabe 1\nErstellen Sie ihr eigenes Theme um die Abbildung folgendermaßen aussehen zu lassen:"
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#aufgabe-1---teil-i",
+    "href": "GDSR_4_Part_1.html#aufgabe-1---teil-i",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Aufgabe 1 - Teil I",
+    "text": "Aufgabe 1 - Teil I\nErstellen Sie bitte ein eigenes Theme mit dem Namen GDSR_theme, das auf dem theme_bw() basiert und folgendem Design folgt:\n\nDie gesamte Abbildung (Plot, Legende, und Panel soll einen leicht angegrauten Hintergrund haben: #fafafa\nAlle Schriftelemente mit Ausnahme des Titels sollen ein dunkles Blau als Farbe haben: #2A4D69\nAlle Schriftelemente mit Ausnahme des Titels (Achsenbeschriftung, Achsentitel, Achsenticks, Legendentext, Legendentitel, Subtitle) sollen in Times New Roman gesetzt werden.\nDer Titel soll in Comic Sans MS gesetzt werden und folgende Farbe aus dem Design haben: #F29E4C\nAchsentitel und Abbildungstitel sollen fett gedruckt sein.\nLegendentext und Legendentitel sowie Achsentext und Achsentitel haben Schriftgröße 12. Der Titel hat Schriftgröße 18 und der Untertitel hat Schriftgröße 14.\nDas Panel enthält nur Major-Gridlines in Farbe #2A4D69 und gestrichelt (linetype 3) in size = 0.5.\nDie Abbildung hat einen Rahmen (panel.boarder) ebenfalls in Farbe #2A4D69 und mit linetype 2.\nDie Achsenticks sind ebenfalls in Farbe #2A4D69\nDie Legende soll oben links platziert sein.\nTitel und Legende sollen linksbündig mit der Achsenbeschriftung ausgerichtet werden."
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#aufgabe-1---teil-ii",
+    "href": "GDSR_4_Part_1.html#aufgabe-1---teil-ii",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Aufgabe 1 - Teil II",
+    "text": "Aufgabe 1 - Teil II\n\n\n\n\n\n\n\n\nÄndern Sie nun folgende Punkte an der Abbildung:\n\nUnterscheiden Sie die Arten von Pinguinen nur durch Shape und nicht durch Color.\nFärben Sie die Datenpunkte einheitlich in #2A4D69 ein.\nÄndern Sie die Farbe der Regressionslinie zu #F29E4C.\nWeisen Sie der Abbildung das neue Theme zu."
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#speichern-der-abbildungen",
+    "href": "GDSR_4_Part_1.html#speichern-der-abbildungen",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Speichern der Abbildungen",
+    "text": "Speichern der Abbildungen\n\n\n\n\n\n\n\n\nggsave() speichert in viele Formate, z.B. “png”, “eps”, “ps”, “tex” (pictex), “pdf”, “jpeg”, “tiff”, “png”, “bmp”, “svg”, …\nNeben der Größe (Breite und Höhe) kann auch die Auflösung (dpi) oder das Farbmodel angegeben werden.\nAnmerkung: Die base-R Lösung über pdf() oder png() ist auch mit `ggplot-Objekten möglich."
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#das-menü",
+    "href": "GDSR_4_Part_1.html#das-menü",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Das Menü",
+    "text": "Das Menü\n\n\nDie meisten Datensätze können interkativ über das Menü in R-Studio eingelesen werden.\nDabei wird auch der entsprechende R-Code generiert, den Sie dann in Ihr Skript übernehmen können.\nAufgrund der einfachen Bedienung und der komfortablen Vorschau-Funktion ist es empfehlenswert diesen Weg für das erste Mal des Einlesens eines Datensatzes zu wählen.\nNatürlich können alle Datensätze auch über ein Skript eingelesen werden.\nBei spezielleren Datensätzen ist dieser Weg zu bevorzugen.\nWir beschränken uns hier im Kurs auf “Rechtecksdaten” in den Formaten *.csv und *.xls bzw. *.xlsx"
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#csv-datensätze-1",
+    "href": "GDSR_4_Part_1.html#csv-datensätze-1",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "CSV-Datensätze (1)",
+    "text": "CSV-Datensätze (1)\n\n\n\n\n\n\n\n\n\nalternativ"
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#clean-up-missing-values",
+    "href": "GDSR_4_Part_1.html#clean-up-missing-values",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Clean-up missing values",
+    "text": "Clean-up missing values\n\n\n\n\n\n\n\n\n\nalternativ"
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#einheitliche-namen-der-variablen",
+    "href": "GDSR_4_Part_1.html#einheitliche-namen-der-variablen",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Einheitliche Namen der Variablen",
+    "text": "Einheitliche Namen der Variablen"
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#variablentypen-zuweisen",
+    "href": "GDSR_4_Part_1.html#variablentypen-zuweisen",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Variablentypen zuweisen",
+    "text": "Variablentypen zuweisen\n\nDIe Variable meal_plan ist eine kategoriale Variable die in R als Faktor angelegt sein sollte. Nur so kann R später für Modellierung etc. die Variablen korrekt verwenden."
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#variablen-bereinigen",
+    "href": "GDSR_4_Part_1.html#variablen-bereinigen",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Variablen bereinigen",
+    "text": "Variablen bereinigen\n\nDIe Variable age enthält aktuell Zahlen und Strings. Das wollen wir bereinigen.\n\n\n\n\n\n\n\n\n\nWeitere Informationen und Optionen zum Umgang mit CSV-Files finden Sie unter ?read_csv."
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#excel-daten",
+    "href": "GDSR_4_Part_1.html#excel-daten",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Excel-Daten",
+    "text": "Excel-Daten\n\n\nMicrosoft Excel ist wahrscheinlich das meistgenutze Tabellenkalkulationsprogramm und wahrscheinlich auch das meistgenutze Programm zur (oberflächlichen) Datenanalyse.\nDie Excel-Datenformate sind daher auch häufig genutze Output-Formate für Datengenerierungen und Datenweitergaben (speziell in Unternehmen).\nR kann Excel-Daten u.a. über das Paket readxl lesen und via writexl schreiben. Die zugehörige Funktion ist read_excel().\nAnmerkung: R kann auch mit Stata, SPSS, SAS o.ä. Daten umgehen z.B. via des Pakets haven."
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#excel-daten-einlesen-1",
+    "href": "GDSR_4_Part_1.html#excel-daten-einlesen-1",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Excel-Daten einlesen (1)",
+    "text": "Excel-Daten einlesen (1)"
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#excel-daten-einlesen-2",
+    "href": "GDSR_4_Part_1.html#excel-daten-einlesen-2",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Excel-Daten einlesen (2)",
+    "text": "Excel-Daten einlesen (2)"
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#excel-daten-aus-dateien-mit-mehreren-tabellenblättern-einlesen",
+    "href": "GDSR_4_Part_1.html#excel-daten-aus-dateien-mit-mehreren-tabellenblättern-einlesen",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Excel-Daten aus Dateien mit mehreren Tabellenblättern einlesen",
+    "text": "Excel-Daten aus Dateien mit mehreren Tabellenblättern einlesen"
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#daten-zu-einem-datensatz-zusammenfügen",
+    "href": "GDSR_4_Part_1.html#daten-zu-einem-datensatz-zusammenfügen",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Daten zu einem Datensatz zusammenfügen",
+    "text": "Daten zu einem Datensatz zusammenfügen"
+  },
+  {
+    "objectID": "GDSR_4_Part_1.html#unsere-themenliste",
+    "href": "GDSR_4_Part_1.html#unsere-themenliste",
+    "title": "Teil IV - Themes und Data Handling",
+    "section": "Unsere Themenliste",
+    "text": "Unsere Themenliste\n\n\nEinführung in R und R-Studio: Überblick über die Installations- und Einrichtungsprozesse | Grundlegende Funktionen und Bedienung von R und RStudio\nGrundlagen der Statistiksprache R: Syntax und Datenstrukturen in R | Einführung in Funktionen und Pakete\nDatenmanagement in R: Methoden der Datenorganisation und -vorbereitung | Importieren, Bereinigen und Transformieren von Datensätzen\nEinführung in die Pakete des tidyverse: Überblick über die wichtigsten tidyverse-Pakete wie z.B. dplyr und ggplot2 | Anwendung dieser Pakete zur effizienten Datenanalyse und -visualisierung\nDeskriptive Statistik in R: Berechnung und Interpretation grundlegender statistischer Kennzahlen | Anwendung von deskriptiven Methoden zur Datenexploration | Einführung in die statistische Modellierung am Beispiel linearer Modelle\nDatenvisualisierung in R: Erstellen von publikationsreifen Grafiken und Diagrammen mit ggplot2 | Gestaltung und Interpretation von Datenvisualisierungen zur Unterstützung der Datenanalyse\n\nNoch offen: Einheitliche und publikationsreife Tabellen (nächste Woche).\n\n\n\nGitHub-Repo: https://github.com/dschnitzlein/GDSR_4_Part_1/"
   }
 ]

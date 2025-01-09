@@ -12,8 +12,8 @@
 <link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.54">
 
-  <meta name="author" content="Prof.&nbsp;Dr.&nbsp;Daniel Schnitzlein">
-  <title>Datentransformation und Modellierung</title>
+  <meta name="author" content="Prof.&nbsp;Dr.&nbsp;Daniel D. Schnitzlein">
+  <title>Teil IV - Themes und Data Handling</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -331,48 +331,834 @@
     <div class="slides">
 
 <section id="title-slide" data-background-color="#2A4D69" data-background-image="./images/logo.png" data-background-position="center right 20px" data-background-size="30%" class="quarto-title-block center">
-  <h1 class="title">Datentransformation und Modellierung</h1>
+  <h1 class="title">Teil IV - Themes und Data Handling</h1>
   <p class="subtitle">Grundlagen der Datenanalyse und Statistik mit R | WS 2024/25</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Prof.&nbsp;Dr.&nbsp;Daniel Schnitzlein 
+Prof.&nbsp;Dr.&nbsp;Daniel D. Schnitzlein 
 </div>
 </div>
 </div>
 
 </section>
 <section>
-<section id="dplyr-paket" class="title-slide slide level1 center">
-<h1><code>dplyr</code>-Paket</h1>
+<section id="wiederholung-aus-dem-letzten-jahr" class="title-slide slide level1 center">
+<h1>1. Wiederholung aus dem letzten Jahr</h1>
 
 </section>
-<section id="das-dplyr-paket" class="slide level2">
-<h2>Das <code>dplyr</code> Paket</h2>
+<section id="aufgabenblatt-iii-datentransformation-und-modellierung" class="slide level2">
+<h2>Aufgabenblatt III: Datentransformation und Modellierung</h2>
+<p>(siehe R.Skript auf Moodle und GitHub).</p>
+</section></section>
+<section>
+<section id="themes-erstellen-von-reproduzierbaren-publikationsreifen-datenvisualisierungen" class="title-slide slide level1 center">
+<h1>2. Themes: Erstellen von reproduzierbaren publikationsreifen Datenvisualisierungen</h1>
+
+</section>
+<section id="der-ausgangspunkt-nach-dem-zweiten-termin" class="slide level2">
+<h2>Der Ausgangspunkt nach dem zweiten Termin</h2>
 <p><br></p>
-<div class="columns">
-<div class="column" style="width:60%;">
+<div class="cell">
+<div>
+<div id="webr-1" class="exercise-cell">
+
+</div>
+<script type="webr-1-contents">
+eyJjb2RlIjoiaW5zdGFsbC5wYWNrYWdlcygncGFsbWVycGVuZ3VpbnMnKVxubGlicmFyeShwYWxtZXJwZW5ndWlucylcbmxpYnJhcnkoZ2dwbG90MikgIyBBbHRlcm5hdGl2IGvDtm5udGVuIHdpciBhdWNoIGRhcyBNZXRhIFBha2V0IHRpZHl2ZXJzZSBlaW5iaW5kZW4uXG5saWJyYXJ5KGdndGhlbWVzKSIsImF0dHIiOnsiZXZhbCI6dHJ1ZSwiZWRpdCI6dHJ1ZX19
+</script>
+</div>
+</div>
+</section>
+<section id="warum-soll-ich-ein-theme-nutzen" class="slide level2">
+<h2>Warum soll ich ein Theme nutzen?</h2>
+<p><br></p>
+<div class="fragment">
 <div>
 <ul>
-<li class="fragment"><p>Alle Datenmanipulationen und -transformationen die wir in diesem Abschnitt behandeln, können auch in Base R ausgeführt werden.</p></li>
-<li class="fragment"><p>Allerdings stellt das <code>tidyverse</code> mit dem <code>dplyr</code> Paket ein Werkzeug zur Verfügung, das die Arbeit mit Daten und speziell komplexeren Daten deutlich vereinfacht.</p></li>
-<li class="fragment"><p>Wir nutzen <code>dplyr</code> in diesem Kurs mit Datensätzen, die im DataFrame oder Tibble Format vorliegen.</p></li>
-<li class="fragment"><p><code>dplyr</code> kann aber auch mit larger-than-memory Datensätzen z.B. auf AWS (<code>arrow</code>) oder Apache Spark (<code>sparklyr</code>) zusammenarbeiten.</p></li>
-<li class="fragment"><p>Ebenso steht mit <code>dbplyr</code> eine Anbindung an SQL zur Verfügung und via <code>duckplyr</code> an DuckDB.</p></li>
+<li class="fragment"><p>Themes haben <code>keinen</code> Einfluss darauf, wie die Daten dargestellt oder ob und wie sie transformiert werden.</p></li>
+<li class="fragment"><p>Themes ändern die Eigenschaften eines Plots <code>nicht</code>, aber sie helfen, den Plot ästhetisch ansprechend zu gestalten oder an einen bestehenden Styleguide anzupassen. Themes steuern Elemente wie z.B. Schriftarten, Ticks, Hintergründe etc.</p></li>
+<li class="fragment"><p>Themes vereinfachen es, Abbildungen ein einheitliches Erscheinungsbild innerhalb einer Publikation, innerhalb einer Organisation oder eines Web-Auftritts zu geben.</p></li>
+<li class="fragment"><p>Ein einheitliches Erscheinungsbild (das nicht einfach die Standardeinstellungen nutzt) wirkt professioneller und überzeugender verglichen mit wild zusammengewürfelten Designs.</p></li>
+<li class="fragment"><p>Individuelle Themes können in <code>R</code> vordefiniert werden und müssen daher nur einmal erstellt werden und können dann auf alle Arten von Abbildungen angewendet werden.</p></li>
 </ul>
 </div>
-</div><div class="column" style="width:40%;">
-<p>TEst</p>
-</div></div>
+</div>
+</section>
+<section id="kernelemente-des-ggplot2-theme-systems" class="slide level2">
+<h2>Kernelemente des <code>ggplot2</code>-Theme-Systems</h2>
+<p><br></p>
+<table class="caption-top">
+<tbody>
+<tr class="odd">
+<td><code>elements</code></td>
+<td>Definiert das Objekt, das verändert werden soll.</td>
+<td>z.B. <code>plot.title</code> oder <code>axis.ticks.x</code> usw. Eine vollständige Liste aller <code>elements</code> findet sich <a href="https://ggplot2.tidyverse.org/reference/theme.html">hier</a>.</td>
+</tr>
+<tr class="even">
+<td><code>element function</code></td>
+<td>Jedes <code>element</code> ist mit einer oder mehreren <code>element functions</code> verbunden.</td>
+<td>z.B. <code>element_text(...)</code> definiert die Schriftgröße, Schriftart, Farbe etc. von <code>plot.title</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>theme(...)</code></td>
+<td>Funktion um die Änderungen durchzuführen.</td>
+<td>z.B. <code>theme(plot.title = element_text(colour = "red"))</code></td>
+</tr>
+<tr class="even">
+<td>vollständige <code>Themes</code></td>
+<td>Vollständige <code>Themes</code>, die entweder bereits vordefiniert oder selbst definiert werden können.</td>
+<td>z.B. <code>theme_bw( )</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="vollständige-ggplot2-themes-1" class="slide level2">
+<h2>Vollständige <code>ggplot2</code>-Themes (1)</h2>
+<p><br></p>
+<p><code>ggplot2</code> ermöglicht es anhand von Themes die Formatierung von Abbildungen weitgehend zu automatisieren (z.B. Anwendung von einheitlichem Corporate Design).</p>
+<div class="cell">
+<div>
+<div id="webr-2" class="exercise-cell">
+
+</div>
+<script type="webr-2-contents">
+eyJjb2RlIjoiZ2dwbG90KGRhdGEgPSBwZW5ndWlucywgYWVzKHggPSBmbGlwcGVyX2xlbmd0aF9tbSwgeSA9IGJvZHlfbWFzc19nKSkgKyBcbiAgZ2VvbV9wb2ludChhZXMoY29sb3IgPSBzcGVjaWVzLCBzaGFwZSA9IHNwZWNpZXMpKSArIFxuICBnZW9tX3Ntb290aChtZXRob2QgPSBcImxtXCIpICsgXG4gIGxhYnModGl0bGUgPSBcIkJvZHkgbWFzcyBhbmQgZmxpcHBlciBsZW5ndGhcIiwgXG4gICAgICAgc3VidGl0bGUgPSBcIkRpbWVuc2lvbnMgZm9yIEFkZWxpZSwgQ2hpbnN0cmFwLCBhbmQgR2VudG9vIFBlbmd1aW5zXCIsIFxuICAgICAgIHggPSBcIkZsaXBwZXIgbGVuZ3RoIChtbSlcIiwgXG4gICAgICAgeSA9IFwiQm9keSBtYXNzIChnKVwiLCBcbiAgICAgICBjb2xvciA9IFwiU3BlY2llc1wiLCBcbiAgICAgICBzaGFwZSA9IFwiU3BlY2llc1wiKSArIFxuICB0aGVtZV9lY29ub21pc3QoKSIsImF0dHIiOnsid2FybmluZyI6ZmFsc2UsImV2YWwiOnRydWUsImVkaXQiOnRydWV9fQ==
+</script>
+</div>
+</div>
+</section>
+<section id="vollständige-ggplot2-themes-2" class="slide level2">
+<h2>Vollständige <code>ggplot2</code>-Themes (2)</h2>
+<p><br></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 66%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><code>theme_gray()</code></td>
+<td>Das charakteristische ggplot2-Design mit grauem Hintergrund und weißen Gitterlinien, das die Daten hervorhebt und Vergleiche erleichtert.</td>
+</tr>
+<tr class="even">
+<td><code>theme_bw()</code></td>
+<td>Variation des klassische „dark-on-light“-ggplot2-Themes. Eignet sich möglicherweise besser für die Anzeige mit einem Beamer.</td>
+</tr>
+<tr class="odd">
+<td><code>theme_linedraw()</code></td>
+<td>Theme nutzt nur schwarzen Linien unterschiedlicher Breite auf weißem Hintergrund.</td>
+</tr>
+<tr class="even">
+<td><code>theme_light()</code></td>
+<td>Ein ähnliches Theme wie&nbsp;<code>theme_linedraw()</code>, aber mit hellgrauen Linien und Achsen, um mehr Aufmerksamkeit auf die Daten zu lenken.</td>
+</tr>
+<tr class="odd">
+<td><code>theme_dark()</code></td>
+<td>Der dunkle Cousin von&nbsp;<code>theme_light()</code>, mit ähnlichen Strichstärken, aber dunklem Hintergrund.</td>
+</tr>
+<tr class="even">
+<td><code>theme_minimal()</code></td>
+<td>Ein minimalistisches Theme ohne Hintergrund.</td>
+</tr>
+<tr class="odd">
+<td><code>theme_classic()</code></td>
+<td>Ein klassisch aussehendes Theme mit x- und y-Achsenlinien und ohne Gitterlinien.</td>
+</tr>
+<tr class="even">
+<td><code>theme_void()</code></td>
+<td>Ein komplett leeres Theme.</td>
+</tr>
+<tr class="odd">
+<td><code>theme_test()</code></td>
+<td>Ein Theme zum Testen visueller Komponenten. Es sollte sich idealerweise nie ändern, außer bei neuen Funktionen.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="probieren-sie-es-aus" class="slide level2">
+<h2>Probieren Sie es aus!</h2>
+<p><br></p>
+<div class="cell">
+<div>
+<div id="webr-3" class="exercise-cell">
+
+</div>
+<script type="webr-3-contents">
+eyJjb2RlIjoiZ2dwbG90KGRhdGEgPSBwZW5ndWlucywgYWVzKHggPSBmbGlwcGVyX2xlbmd0aF9tbSwgeSA9IGJvZHlfbWFzc19nKSkgKyBcbiAgZ2VvbV9wb2ludChhZXMoY29sb3IgPSBzcGVjaWVzLCBzaGFwZSA9IHNwZWNpZXMpKSArIFxuICBnZW9tX3Ntb290aChtZXRob2QgPSBcImxtXCIpICsgXG4gIGxhYnModGl0bGUgPSBcIkJvZHkgbWFzcyBhbmQgZmxpcHBlciBsZW5ndGhcIiwgXG4gICAgICAgc3VidGl0bGUgPSBcIkRpbWVuc2lvbnMgZm9yIEFkZWxpZSwgQ2hpbnN0cmFwLCBhbmQgR2VudG9vIFBlbmd1aW5zXCIsIFxuICAgICAgIHggPSBcIkZsaXBwZXIgbGVuZ3RoIChtbSlcIiwgXG4gICAgICAgeSA9IFwiQm9keSBtYXNzIChnKVwiLCBcbiAgICAgICBjb2xvciA9IFwiU3BlY2llc1wiLCBcbiAgICAgICBzaGFwZSA9IFwiU3BlY2llc1wiKSArIFxuICB0aGVtZV9ncmF5KCkiLCJhdHRyIjp7Indhcm5pbmciOmZhbHNlLCJldmFsIjp0cnVlLCJlZGl0Ijp0cnVlfX0=
+</script>
+</div>
+</div>
+</section>
+<section id="anpassen-der-integrierten-themes" class="slide level2">
+<h2>Anpassen der integrierten <code>themes</code></h2>
+<p><br></p>
+<ul>
+<li><p>Alle vordefinierten Themes haben einen Parameter <code>base_size()</code> mit dem die Basisschriftgröße (Achsentitel) aller Schriften mit einem Befehl geändert werden kann.</p></li>
+<li><p>Dabei wird auch die Achsenbeschriftung (0.8x) und der Titel (1.2x) angepasst.</p></li>
+<li><p>Mit <code>set_theme()</code> kann ein bestimmtes <code>theme</code> als Standardtheme gesetzt werden.</p></li>
+<li><p>Alle weitergehenden Änderungen müssen über die Ansprache der entsprechenden Elemente direkt erfolgen.</p></li>
+</ul>
+</section>
+<section id="beispiel-änderung-der-farbe-im-titel" class="slide level2">
+<h2>Beispiel: Änderung der Farbe im Titel</h2>
+<p><br></p>
+<div class="cell">
+<div>
+<div id="webr-4" class="exercise-cell">
+
+</div>
+<script type="webr-4-contents">
+eyJjb2RlIjoiZ2dwbG90KGRhdGEgPSBwZW5ndWlucywgYWVzKHggPSBmbGlwcGVyX2xlbmd0aF9tbSwgeSA9IGJvZHlfbWFzc19nKSkgKyBcbiAgZ2VvbV9wb2ludChhZXMoY29sb3IgPSBzcGVjaWVzLCBzaGFwZSA9IHNwZWNpZXMpKSArIFxuICBnZW9tX3Ntb290aChtZXRob2QgPSBcImxtXCIpICsgXG4gIGxhYnModGl0bGUgPSBcIkJvZHkgbWFzcyBhbmQgZmxpcHBlciBsZW5ndGhcIiwgXG4gICAgICAgc3VidGl0bGUgPSBcIkRpbWVuc2lvbnMgZm9yIEFkZWxpZSwgQ2hpbnN0cmFwLCBhbmQgR2VudG9vIFBlbmd1aW5zXCIsIFxuICAgICAgIHggPSBcIkZsaXBwZXIgbGVuZ3RoIChtbSlcIiwgXG4gICAgICAgeSA9IFwiQm9keSBtYXNzIChnKVwiLCBcbiAgICAgICBjb2xvciA9IFwiU3BlY2llc1wiLCBcbiAgICAgICBzaGFwZSA9IFwiU3BlY2llc1wiKSArIFxuICB0aGVtZV9idygpICtcbiAgdGhlbWUocGxvdC50aXRsZSA9IGVsZW1lbnRfdGV4dChjb2xvdXIgPSBcInJlZFwiKSkiLCJhdHRyIjp7Indhcm5pbmciOmZhbHNlLCJldmFsIjp0cnVlLCJlZGl0Ijp0cnVlfX0=
+</script>
+</div>
+</div>
+</section>
+<section id="beispiel-volle-individualisierung" class="slide level2">
+<h2>Beispiel: Volle Individualisierung</h2>
+<p><br></p>
+<div class="cell">
+<div>
+<div id="webr-5" class="exercise-cell">
+
+</div>
+<script type="webr-5-contents">
+eyJjb2RlIjoiZ2dwbG90KGRhdGEgPSBwZW5ndWlucywgYWVzKHggPSBmbGlwcGVyX2xlbmd0aF9tbSwgeSA9IGJvZHlfbWFzc19nKSkgKyBcbiAgZ2VvbV9wb2ludChhZXMoY29sb3IgPSBzcGVjaWVzLCBzaGFwZSA9IHNwZWNpZXMpKSArIFxuICBnZW9tX3Ntb290aChtZXRob2QgPSBcImxtXCIpICsgXG4gIGxhYnModGl0bGUgPSBcIkJvZHkgbWFzcyBhbmQgZmxpcHBlciBsZW5ndGhcIiwgXG4gICAgICAgc3VidGl0bGUgPSBcIkRpbWVuc2lvbnMgZm9yIEFkZWxpZSwgQ2hpbnN0cmFwLCBhbmQgR2VudG9vIFBlbmd1aW5zXCIsIFxuICAgICAgIHggPSBcIkZsaXBwZXIgbGVuZ3RoIChtbSlcIiwgXG4gICAgICAgeSA9IFwiQm9keSBtYXNzIChnKVwiLCBcbiAgICAgICBjb2xvciA9IFwiU3BlY2llc1wiLCBcbiAgICAgICBzaGFwZSA9IFwiU3BlY2llc1wiKSArIFxuICB0aGVtZV9idygpICtcbiAgICB0aGVtZShwbG90LnRpdGxlID0gZWxlbWVudF90ZXh0KGNvbG91ciA9IFwicmVkXCIsIGZhbWlseT1cIkNvbWljIFNhbnMgTVNcIiksXG4gICAgICAgIHBsb3Quc3VidGl0bGUgPSBlbGVtZW50X3RleHQoY29sb3VyID0gXCJibHVlXCIsIGZhY2U9XCJib2xkXCIpLFxuICAgICAgICBwbG90LnRpdGxlLnBvc2l0aW9uID0gXCJwbG90XCIsXG4gICAgICAgIGF4aXMudGl0bGUgPSBlbGVtZW50X3RleHQoY29sb3VyID0gXCJibHVlXCIpLFxuICAgICAgICBheGlzLnRleHQgPSBlbGVtZW50X3RleHQoY29sb3VyID0gXCJwdXJwbGVcIiksXG4gICAgICAgIGxlZ2VuZC5wb3NpdGlvbiA9IFwidG9wXCIsXG4gICAgICAgIGxlZ2VuZC5sb2NhdGlvbiA9IFwicGxvdFwiLFxuICAgICAgICBsZWdlbmQubWFyZ2luID0gbWFyZ2luKDAsIDAsIDAsIDApLCAjIHR1cm5lZCBvZmYgZm9yIGFsaWdubWVudFxuICAgICAgICBsZWdlbmQuanVzdGlmaWNhdGlvbi50b3AgPSBcImxlZnRcIixcbiAgICAgICAgbGVnZW5kLmp1c3RpZmljYXRpb24ubGVmdCA9IFwidG9wXCIsXG4gICAgICAgIHBhbmVsLmdyaWQubWFqb3IgPSBlbGVtZW50X2JsYW5rKCksXG4gICAgICAgIHBhbmVsLmdyaWQubWlub3IgPSBlbGVtZW50X2JsYW5rKCksXG4gICAgICAgIHBhbmVsLmJvcmRlcj1lbGVtZW50X2JsYW5rKCksXG4gICAgICAgIGF4aXMubGluZS54ID0gZWxlbWVudF9saW5lKGNvbG91ciA9IFwibGlnaHRncmF5XCIpLFxuICAgICAgICBheGlzLmxpbmUueSA9IGVsZW1lbnRfbGluZShjb2xvdXIgPSBcImxpZ2h0Z3JheVwiKVxuICAgICkiLCJhdHRyIjp7Indhcm5pbmciOmZhbHNlLCJldmFsIjp0cnVlLCJlZGl0Ijp0cnVlfX0=
+</script>
+</div>
+</div>
+</section>
+<section id="definieren-eigener-themes" class="slide level2">
+<h2>Definieren eigener Themes</h2>
+<p><br></p>
+<div class="cell">
+<div>
+<div id="webr-6" class="exercise-cell">
+
+</div>
+<script type="webr-6-contents">
+eyJjb2RlIjoiRGFuaWVsc190aGVtZSA8LSBmdW5jdGlvbigpIHtcbiAgdGhlbWVfYncoKSArXG4gICAgdGhlbWUocGxvdC50aXRsZSA9IGVsZW1lbnRfdGV4dChjb2xvdXIgPSBcInJlZFwiLCBmYW1pbHk9XCJDb21pYyBTYW5zIE1TXCIpLFxuICAgICAgICAgIHBsb3Quc3VidGl0bGUgPSBlbGVtZW50X3RleHQoY29sb3VyID0gXCJibHVlXCIsIGZhY2U9XCJib2xkXCIpLFxuICAgICAgICAgIHBsb3QudGl0bGUucG9zaXRpb24gPSBcInBsb3RcIixcbiAgICAgICAgICBheGlzLnRpdGxlID0gZWxlbWVudF90ZXh0KGNvbG91ciA9IFwiYmx1ZVwiKSxcbiAgICAgICAgICBheGlzLnRleHQgPSBlbGVtZW50X3RleHQoY29sb3VyID0gXCJwdXJwbGVcIiksXG4gICAgICAgICAgbGVnZW5kLnBvc2l0aW9uID0gXCJ0b3BcIixcbiAgICAgICAgICBsZWdlbmQubG9jYXRpb24gPSBcInBsb3RcIixcbiAgICAgICAgICBsZWdlbmQubWFyZ2luID0gbWFyZ2luKDAsIDAsIDAsIDApLCAjIHR1cm5lZCBvZmYgZm9yIGFsaWdubWVudFxuICAgICAgICAgIGxlZ2VuZC5qdXN0aWZpY2F0aW9uLnRvcCA9IFwibGVmdFwiLFxuICAgICAgICAgIGxlZ2VuZC5qdXN0aWZpY2F0aW9uLmxlZnQgPSBcInRvcFwiLFxuICAgICAgICAgIHBhbmVsLmdyaWQubWFqb3IgPSBlbGVtZW50X2JsYW5rKCksXG4gICAgICAgICAgcGFuZWwuZ3JpZC5taW5vciA9IGVsZW1lbnRfYmxhbmsoKSxcbiAgICAgICAgICBwYW5lbC5ib3JkZXI9ZWxlbWVudF9ibGFuaygpLFxuICAgICAgICAgIGF4aXMubGluZS54ID0gZWxlbWVudF9saW5lKGNvbG91ciA9IFwibGlnaHRncmF5XCIpLFxuICAgICAgICAgIGF4aXMubGluZS55ID0gZWxlbWVudF9saW5lKGNvbG91ciA9IFwibGlnaHRncmF5XCIpXG4gICAgKVxufSIsImF0dHIiOnsid2FybmluZyI6ZmFsc2UsImV2YWwiOnRydWUsImVkaXQiOnRydWV9fQ==
+</script>
+</div>
+</div>
+</section>
+<section id="nutzen-eigener-themes" class="slide level2">
+<h2>Nutzen eigener Themes</h2>
+<p><br></p>
+<div class="cell">
+<div>
+<div id="webr-7" class="exercise-cell">
+
+</div>
+<script type="webr-7-contents">
+eyJjb2RlIjoiXG50aGVtZV9zZXQoRGFuaWVsc190aGVtZSgpKVxuXG5nZ3Bsb3QoZGF0YSA9IHBlbmd1aW5zLCBhZXMoeCA9IGZsaXBwZXJfbGVuZ3RoX21tLCB5ID0gYm9keV9tYXNzX2cpKSArIFxuICBnZW9tX3BvaW50KGFlcyhjb2xvciA9IHNwZWNpZXMsIHNoYXBlID0gc3BlY2llcykpICsgXG4gIGdlb21fc21vb3RoKG1ldGhvZCA9IFwibG1cIikgKyBcbiAgbGFicyh0aXRsZSA9IFwiQm9keSBtYXNzIGFuZCBmbGlwcGVyIGxlbmd0aFwiLCBcbiAgICAgICBzdWJ0aXRsZSA9IFwiRGltZW5zaW9ucyBmb3IgQWRlbGllLCBDaGluc3RyYXAsIGFuZCBHZW50b28gUGVuZ3VpbnNcIiwgXG4gICAgICAgeCA9IFwiRmxpcHBlciBsZW5ndGggKG1tKVwiLCBcbiAgICAgICB5ID0gXCJCb2R5IG1hc3MgKGcpXCIsIFxuICAgICAgIGNvbG9yID0gXCJTcGVjaWVzXCIsIFxuICAgICAgIHNoYXBlID0gXCJTcGVjaWVzXCIpIiwiYXR0ciI6eyJ3YXJuaW5nIjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZWRpdCI6dHJ1ZX19
+</script>
+</div>
+</div>
+</section>
+<section id="wichtige-themeelemente-1.-plotelemente" class="slide level2">
+<h2>Wichtige Themeelemente: 1. Plotelemente</h2>
+<p><br></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 53%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Funktion</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>plot.background</td>
+<td><code>element_rect()</code></td>
+<td>Hintergrund der Abbildung (ohne Daten)</td>
+</tr>
+<tr class="even">
+<td>plot.title</td>
+<td><code>element_text()</code></td>
+<td>Titel der Abbildung</td>
+</tr>
+<tr class="odd">
+<td>plot.margin</td>
+<td><code>margin()</code></td>
+<td>Margins um die Abbildung</td>
+</tr>
+<tr class="even">
+<td>plot.title.position</td>
+<td>“panel”, “plot”</td>
+<td>Alignment des Titels entweder mit dem Panel oder Plot</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="wichtige-themeelemente-2.-achsenelemente" class="slide level2">
+<h2>Wichtige Themeelemente: 2. Achsenelemente</h2>
+<p><br></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Funktion</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>axis.line</td>
+<td><code>element_line()</code></td>
+<td>Achsenlinie (in std. Themes versteckt)</td>
+</tr>
+<tr class="even">
+<td>axis.text</td>
+<td><code>element_text()</code></td>
+<td>Labels der Achsenticks</td>
+</tr>
+<tr class="odd">
+<td>axis.text.x</td>
+<td><code>element_text()</code></td>
+<td>x-Achsentickslabels</td>
+</tr>
+<tr class="even">
+<td>axis.text.y</td>
+<td><code>element_text()</code></td>
+<td>y-Achsentickslabels</td>
+</tr>
+<tr class="odd">
+<td>axis.title</td>
+<td><code>element_text()</code></td>
+<td>Achsentitel</td>
+</tr>
+<tr class="even">
+<td>axis.title.x</td>
+<td><code>element_text()</code></td>
+<td>Achsentitel x-Achse</td>
+</tr>
+<tr class="odd">
+<td>axis.title.y</td>
+<td><code>element_text()</code></td>
+<td>Achsentitel y-Achse</td>
+</tr>
+<tr class="even">
+<td>axis.ticks</td>
+<td><code>element_line()</code></td>
+<td>Achsentickstriche</td>
+</tr>
+<tr class="odd">
+<td>axis.ticks.length</td>
+<td><code>unit()</code></td>
+<td>Achsentickstrichlänge</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="wichtige-themeelemente-3.-legendenelemente" class="slide level2">
+<h2>Wichtige Themeelemente: 3. Legendenelemente</h2>
+<p><br></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Funktion</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>legend.background</td>
+<td><code>element_rect()</code></td>
+<td>Legendenhintergrund</td>
+</tr>
+<tr class="even">
+<td>legend.key</td>
+<td><code>element_rect()</code></td>
+<td>Hintergrund der Legendeneinträge</td>
+</tr>
+<tr class="odd">
+<td>legend.key.size</td>
+<td><code>unit()</code></td>
+<td>Größe der Legendeneinträge</td>
+</tr>
+<tr class="even">
+<td>legend.key.height</td>
+<td><code>unit()</code></td>
+<td>Höhe der Legendeneinträge</td>
+</tr>
+<tr class="odd">
+<td>legend.key.width</td>
+<td><code>unit()</code></td>
+<td>Breite der Legendeneinträge</td>
+</tr>
+<tr class="even">
+<td>legend.margin</td>
+<td><code>unit()</code></td>
+<td>Margin um die Legende</td>
+</tr>
+<tr class="odd">
+<td>legend.text</td>
+<td><code>element_text()</code></td>
+<td>Legenden Labels</td>
+</tr>
+<tr class="even">
+<td>legend.text.align</td>
+<td>0–1</td>
+<td>Legenden Label Alignment (0 = rechts, 1 = links)</td>
+</tr>
+<tr class="odd">
+<td>legend.title</td>
+<td><code>element_text()</code></td>
+<td>Legendenname</td>
+</tr>
+<tr class="even">
+<td>legend.title.align</td>
+<td>0–1</td>
+<td>Legendname Alignment (0 = rechts, 1 = links)</td>
+</tr>
+<tr class="odd">
+<td>legend.position</td>
+<td>“top”, “bottom”, “left”, “inside”, “right”, “none”</td>
+<td>Positionieren der Legende</td>
+</tr>
+<tr class="even">
+<td>legend.justification.top</td>
+<td>“left”, “center”, “right”</td>
+<td>Positionieren der Legende (ebenfalls für alle Pos.)</td>
+</tr>
+<tr class="odd">
+<td>legend.location</td>
+<td>“plot”, “panel”</td>
+<td>Alignment der Legende entweder mit Plot oder Panel</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="wichtige-themeelemente-4.-panelelemente" class="slide level2">
+<h2>Wichtige Themeelemente: 4. Panelelemente</h2>
+<p><br></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 26%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Funktion</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>panel.background</td>
+<td><code>element_rect()</code></td>
+<td>Panel Hintergrund (unter den Daten)</td>
+</tr>
+<tr class="even">
+<td>panel.border</td>
+<td><code>element_rect()</code></td>
+<td>Panelrahmen</td>
+</tr>
+<tr class="odd">
+<td>panel.grid.major</td>
+<td><code>element_line()</code></td>
+<td>Hauptgridlines</td>
+</tr>
+<tr class="even">
+<td>panel.grid.major.x</td>
+<td><code>element_line()</code></td>
+<td>Hauptgridlines vertikal</td>
+</tr>
+<tr class="odd">
+<td>panel.grid.major.y</td>
+<td><code>element_line()</code></td>
+<td>Hauptgridlines horizontal</td>
+</tr>
+<tr class="even">
+<td>panel.grid.minor</td>
+<td><code>element_line()</code></td>
+<td>Minorgridlines</td>
+</tr>
+<tr class="odd">
+<td>panel.grid.minor.x</td>
+<td><code>element_line()</code></td>
+<td>Minorgridlines vertikal</td>
+</tr>
+<tr class="even">
+<td>panel.grid.minor.y</td>
+<td><code>element_line()</code></td>
+<td>Minorgridlines horizontal</td>
+</tr>
+<tr class="odd">
+<td>aspect.ratio</td>
+<td>numeric</td>
+<td>Plot aspect ratio</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="wichtige-themeelemente-5.-facetinglemente" class="slide level2">
+<h2>Wichtige Themeelemente: 5. Facetinglemente</h2>
+<p><br></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Funktion</th>
+<th>Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>strip.background</td>
+<td><code>element_rect()</code></td>
+<td>Hintergrund der Panel Strips</td>
+</tr>
+<tr class="even">
+<td>strip.text</td>
+<td><code>element_text()</code></td>
+<td>Strip Text</td>
+</tr>
+<tr class="odd">
+<td>strip.text.x</td>
+<td><code>element_text()</code></td>
+<td>Horizontaler Strip Text</td>
+</tr>
+<tr class="even">
+<td>strip.text.y</td>
+<td><code>element_text()</code></td>
+<td>Vertikaler Strip Text</td>
+</tr>
+<tr class="odd">
+<td>panel.spacing</td>
+<td><code>unit()</code></td>
+<td>Margin zwischen Facets</td>
+</tr>
+<tr class="even">
+<td>panel.spacing.x</td>
+<td><code>unit()</code></td>
+<td>Margin zwischen Facets (vertikal)</td>
+</tr>
+<tr class="odd">
+<td>panel.spacing.y</td>
+<td><code>unit()</code></td>
+<td>Margin zwischen Facets (horizontal)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="wichtige-theme-funktionen" class="slide level2">
+<h2>Wichtige Theme-Funktionen</h2>
+<p><br></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 81%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><code>element_text(...)</code></td>
+<td>Kontrolliert Schriftart (<code>family</code>), Typ (<code>face</code>), Farbe (<code>colour</code>), Größe (<code>size</code>) usw.</td>
+</tr>
+<tr class="even">
+<td><code>margin(0,0,0,0)</code></td>
+<td>Kontrolliert den Rand um ein Objekt</td>
+</tr>
+<tr class="odd">
+<td><code>element_line(...)</code></td>
+<td>Kontrolliert die Farbe (<code>colour</code>), Linienart (<code>linetype</code>) und Dicke (<code>linewidth</code>) einer Linie</td>
+</tr>
+<tr class="even">
+<td><code>element_rect(...)</code></td>
+<td>Kontrolliert Rechtecke mit den Parametern <code>fill</code>, <code>linewidth</code>, <code>colour</code> und <code>linetype</code></td>
+</tr>
+<tr class="odd">
+<td><code>element_blank(...)</code></td>
+<td>Zeichnet nichts (zum Deaktivieren von Elementen)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="aufgabe-1" class="slide level2">
+<h2>Aufgabe 1</h2>
+<p>Erstellen Sie ihr eigenes Theme um die Abbildung folgendermaßen aussehen zu lassen:</p>
+
+<img data-src="images/Aufgabe_1.png" class="quarto-figure quarto-figure-center r-stretch" width="1050"></section>
+<section id="aufgabe-1---teil-i" class="slide level2">
+<h2>Aufgabe 1 - Teil I</h2>
+<p>Erstellen Sie bitte ein eigenes Theme mit dem Namen <code>GDSR_theme</code>, das auf dem <code>theme_bw()</code> basiert und folgendem Design folgt:</p>
+<ul>
+<li><p>Die gesamte Abbildung (Plot, Legende, und Panel soll einen leicht angegrauten Hintergrund haben: #fafafa</p></li>
+<li><p>Alle Schriftelemente mit Ausnahme des Titels sollen ein dunkles Blau als Farbe haben: #2A4D69</p></li>
+<li><p>Alle Schriftelemente mit Ausnahme des Titels (Achsenbeschriftung, Achsentitel, Achsenticks, Legendentext, Legendentitel, Subtitle) sollen in <strong>Times New Roman</strong> gesetzt werden.</p></li>
+<li><p>Der Titel soll in <strong>Comic Sans MS</strong> gesetzt werden und folgende Farbe aus dem Design haben: #F29E4C</p></li>
+<li><p>Achsentitel und Abbildungstitel sollen fett gedruckt sein.</p></li>
+<li><p>Legendentext und Legendentitel sowie Achsentext und Achsentitel haben Schriftgröße 12. Der Titel hat Schriftgröße 18 und der Untertitel hat Schriftgröße 14.</p></li>
+<li><p>Das Panel enthält nur Major-Gridlines in Farbe #2A4D69 und gestrichelt (linetype 3) in size = 0.5.</p></li>
+<li><p>Die Abbildung hat einen Rahmen (panel.boarder) ebenfalls in Farbe #2A4D69 und mit linetype 2.</p></li>
+<li><p>Die Achsenticks sind ebenfalls in Farbe #2A4D69</p></li>
+<li><p>Die Legende soll oben links platziert sein.</p></li>
+<li><p>Titel und Legende sollen linksbündig mit der Achsenbeschriftung ausgerichtet werden.</p></li>
+</ul>
+</section>
+<section id="aufgabe-1---teil-ii" class="slide level2">
+<h2>Aufgabe 1 - Teil II</h2>
+<div class="cell">
+<div>
+<div id="webr-8" class="exercise-cell">
+
+</div>
+<script type="webr-8-contents">
+eyJjb2RlIjoibGlicmFyeShwYWxtZXJwZW5ndWlucylcbmxpYnJhcnkoZ2dwbG90MikgXG5nZ3Bsb3QoZGF0YSA9IHBlbmd1aW5zLCBhZXMoeCA9IGZsaXBwZXJfbGVuZ3RoX21tLCB5ID0gYm9keV9tYXNzX2cpKSArIFxuICBnZW9tX3BvaW50KGFlcyhjb2xvciA9IHNwZWNpZXMsIHNoYXBlID0gc3BlY2llcykpICsgXG4gIGdlb21fc21vb3RoKG1ldGhvZCA9IFwibG1cIikgKyBcbiAgbGFicyh0aXRsZSA9IFwiQm9keSBtYXNzIGFuZCBmbGlwcGVyIGxlbmd0aFwiLCBcbiAgICAgICBzdWJ0aXRsZSA9IFwiRGltZW5zaW9ucyBmb3IgQWRlbGllLCBDaGluc3RyYXAsIGFuZCBHZW50b28gUGVuZ3VpbnNcIiwgXG4gICAgICAgeCA9IFwiRmxpcHBlciBsZW5ndGggKG1tKVwiLCBcbiAgICAgICB5ID0gXCJCb2R5IG1hc3MgKGcpXCIsIFxuICAgICAgIGNvbG9yID0gXCJTcGVjaWVzXCIsIFxuICAgICAgIHNoYXBlID0gXCJTcGVjaWVzXCIpIiwiYXR0ciI6eyJldmFsIjp0cnVlLCJlZGl0Ijp0cnVlfX0=
+</script>
+</div>
+</div>
+<p>Ändern Sie nun folgende Punkte an der Abbildung:</p>
+<ul>
+<li>Unterscheiden Sie die Arten von Pinguinen nur durch Shape und nicht durch Color.</li>
+<li>Färben Sie die Datenpunkte einheitlich in #2A4D69 ein.</li>
+<li>Ändern Sie die Farbe der Regressionslinie zu #F29E4C.</li>
+<li>Weisen Sie der Abbildung das neue Theme zu.</li>
+</ul>
+</section>
+<section id="speichern-der-abbildungen" class="slide level2">
+<h2>Speichern der Abbildungen</h2>
+<div class="cell">
+<div>
+<div id="webr-9" class="exercise-cell">
+
+</div>
+<script type="webr-9-contents">
+eyJjb2RlIjoiZ2dzYXZlKFxuICBmaWxlbmFtZSxcbiAgcGxvdCA9IGxhc3RfcGxvdCgpLFxuICBkZXZpY2UgPSBOVUxMLFxuICBwYXRoID0gTlVMTCxcbiAgc2NhbGUgPSAxLFxuICB3aWR0aCA9IE5BLFxuICBoZWlnaHQgPSBOQSxcbiAgdW5pdHMgPSBjKFwiaW5cIiwgXCJjbVwiLCBcIm1tXCIsIFwicHhcIiksXG4gIGRwaSA9IDMwMCxcbiAgbGltaXRzaXplID0gVFJVRSxcbiAgYmcgPSBOVUxMLFxuICBjcmVhdGUuZGlyID0gRkFMU0UsXG4gIC4uLlxuKSIsImF0dHIiOnsiZXZhbCI6dHJ1ZSwiZWRpdCI6dHJ1ZX19
+</script>
+</div>
+</div>
+<p><code>ggsave()</code> speichert in viele Formate, z.B. “png”, “eps”, “ps”, “tex” (pictex), “pdf”, “jpeg”, “tiff”, “png”, “bmp”, “svg”, …</p>
+<p>Neben der Größe (Breite und Höhe) kann auch die Auflösung (dpi) oder das Farbmodel angegeben werden.</p>
+<p>Anmerkung: Die <code>base</code>-R Lösung über <code>pdf()</code> oder <code>png()</code> ist auch mit `ggplot-Objekten möglich.</p>
+</section></section>
+<section>
+<section id="einlesen-und-bereinigen-von-daten" class="title-slide slide level1 center">
+<h1>3. Einlesen und Bereinigen von Daten</h1>
+
+</section>
+<section id="das-menü" class="slide level2">
+<h2>Das Menü</h2>
+<p><br></p>
+<ul>
+<li><p>Die meisten Datensätze können interkativ über das Menü in R-Studio eingelesen werden.</p></li>
+<li><p>Dabei wird auch der entsprechende R-Code generiert, den Sie dann in Ihr Skript übernehmen können.</p></li>
+<li><p>Aufgrund der einfachen Bedienung und der komfortablen Vorschau-Funktion ist es empfehlenswert diesen Weg für das erste Mal des Einlesens eines Datensatzes zu wählen.</p></li>
+<li><p>Natürlich können alle Datensätze auch über ein Skript eingelesen werden.</p></li>
+<li><p>Bei spezielleren Datensätzen ist dieser Weg zu bevorzugen.</p></li>
+<li><p>Wir beschränken uns hier im Kurs auf “Rechtecksdaten” in den Formaten *.csv und *.xls bzw. *.xlsx</p></li>
+</ul>
+</section>
+<section id="csv-datensätze-1" class="slide level2">
+<h2>CSV-Datensätze (1)</h2>
+<p><br></p>
+<div class="cell">
+<div>
+<div id="webr-10" class="exercise-cell">
+
+</div>
+<script type="webr-10-contents">
+eyJjb2RlIjoibGlicmFyeSh0aWR5dmVyc2UpXG5zdHVkZW50cyA8LSByZWFkX2NzdihcImRhdGEvc3R1ZGVudHMuY3N2XCIpIiwiYXR0ciI6eyJldmFsIjp0cnVlLCJlZGl0Ijp0cnVlfX0=
+</script>
+</div>
+</div>
+<p>alternativ</p>
+<div class="cell">
+<div>
+<div id="webr-11" class="exercise-cell">
+
+</div>
+<script type="webr-11-contents">
+eyJjb2RlIjoic3R1ZGVudHNfd2ViIDwtIHJlYWRfY3N2KFwiaHR0cHM6Ly9wb3MuaXQvcjRkcy1zdHVkZW50cy1jc3ZcIikiLCJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9fQ==
+</script>
+</div>
+</div>
+</section>
+<section id="clean-up-missing-values" class="slide level2">
+<h2>Clean-up missing values</h2>
+<p><br></p>
+<div class="cell">
+<div>
+<div id="webr-12" class="exercise-cell">
+
+</div>
+<script type="webr-12-contents">
+eyJjb2RlIjoic3R1ZGVudHMgPC0gcmVhZF9jc3YoXCJkYXRhL3N0dWRlbnRzLmNzdlwiKSIsImF0dHIiOnsiZXZhbCI6dHJ1ZSwiZWRpdCI6dHJ1ZX19
+</script>
+</div>
+</div>
+<p>alternativ</p>
+<div class="cell">
+<div>
+<div id="webr-13" class="exercise-cell">
+
+</div>
+<script type="webr-13-contents">
+eyJjb2RlIjoic3R1ZGVudHMgPC0gcmVhZF9jc3YoXCJkYXRhL3N0dWRlbnRzLmNzdlwiLCBuYT1jKFwiTi9BXCIsIFwiXCIpKSIsImF0dHIiOnsiZXZhbCI6dHJ1ZSwiZWRpdCI6dHJ1ZX19
+</script>
+</div>
+</div>
+</section>
+<section id="einheitliche-namen-der-variablen" class="slide level2">
+<h2>Einheitliche Namen der Variablen</h2>
+<p><br></p>
+<div class="cell">
+<div>
+<div id="webr-14" class="exercise-cell">
+
+</div>
+<script type="webr-14-contents">
+eyJjb2RlIjoiaW5zdGFsbC5wYWNrYWdlcyhcImphbml0b3JcIilcbmxpYnJhcnkoamFuaXRvcilcblxuc3R1ZGVudHMgPC0gc3R1ZGVudHMgfD4gXG4gICAgY2xlYW5fbmFtZXMoKSIsImF0dHIiOnsiZXZhbCI6dHJ1ZSwiZWRpdCI6dHJ1ZX19
+</script>
+</div>
+</div>
+</section>
+<section id="variablentypen-zuweisen" class="slide level2">
+<h2>Variablentypen zuweisen</h2>
+<p><br></p>
+<p>DIe Variable <code>meal_plan</code> ist eine kategoriale Variable die in R als Faktor angelegt sein sollte. Nur so kann R später für Modellierung etc. die Variablen korrekt verwenden.</p>
+<div class="cell">
+<div>
+<div id="webr-15" class="exercise-cell">
+
+</div>
+<script type="webr-15-contents">
+eyJjb2RlIjoiXG5zdHVkZW50cyA8LSBzdHVkZW50cyB8PlxuICBtdXRhdGUobWVhbF9wbGFuID0gZmFjdG9yKG1lYWxfcGxhbikpXG4gIFxuc3R1ZGVudHMiLCJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9fQ==
+</script>
+</div>
+</div>
+</section>
+<section id="variablen-bereinigen" class="slide level2">
+<h2>Variablen bereinigen</h2>
+<p><br></p>
+<p>DIe Variable <code>age</code> enthält aktuell Zahlen und Strings. Das wollen wir bereinigen.</p>
+<div class="cell">
+<div>
+<div id="webr-16" class="exercise-cell">
+
+</div>
+<script type="webr-16-contents">
+eyJjb2RlIjoiXG5zdHVkZW50cyA8LSBzdHVkZW50cyB8PlxuICBtdXRhdGUoXG4gICAgYWdlID0gcGFyc2VfbnVtYmVyKGlmX2Vsc2UoYWdlID09IFwiZml2ZVwiLCBcIjVcIiwgYWdlKSlcbiAgKVxuICBcbnN0dWRlbnRzIiwiYXR0ciI6eyJldmFsIjp0cnVlLCJlZGl0Ijp0cnVlfX0=
+</script>
+</div>
+</div>
+<p><br></p>
+<p>Weitere Informationen und Optionen zum Umgang mit CSV-Files finden Sie unter <code>?read_csv</code>.</p>
+</section>
+<section id="excel-daten" class="slide level2">
+<h2>Excel-Daten</h2>
+<p><br></p>
+<ul>
+<li><p>Microsoft Excel ist wahrscheinlich das meistgenutze Tabellenkalkulationsprogramm und wahrscheinlich auch das meistgenutze Programm zur (oberflächlichen) Datenanalyse.</p></li>
+<li><p>Die Excel-Datenformate sind daher auch häufig genutze Output-Formate für Datengenerierungen und Datenweitergaben (speziell in Unternehmen).</p></li>
+<li><p>R kann Excel-Daten u.a. über das Paket <code>readxl</code> lesen und via <code>writexl</code> schreiben. Die zugehörige Funktion ist <code>read_excel()</code>.</p></li>
+<li><p>Anmerkung: R kann auch mit Stata, SPSS, SAS o.ä. Daten umgehen z.B. via des Pakets <code>haven</code>.</p></li>
+</ul>
+</section>
+<section id="excel-daten-einlesen-1" class="slide level2">
+<h2>Excel-Daten einlesen (1)</h2>
+<p><br></p>
+<div class="cell">
+<div>
+<div id="webr-17" class="exercise-cell">
+
+</div>
+<script type="webr-17-contents">
+eyJjb2RlIjoiXG5zdHVkZW50cyA8LSByZWFkX2V4Y2VsKFwiZGF0YS9zdHVkZW50cy54bHN4XCIpIiwiYXR0ciI6eyJldmFsIjp0cnVlLCJlZGl0Ijp0cnVlfX0=
+</script>
+</div>
+</div>
+</section>
+<section id="excel-daten-einlesen-2" class="slide level2">
+<h2>Excel-Daten einlesen (2)</h2>
+<p><br></p>
+<div class="cell">
+<div>
+<div id="webr-18" class="exercise-cell">
+
+</div>
+<script type="webr-18-contents">
+eyJjb2RlIjoiXG5zdHVkZW50cyA8LSByZWFkX2V4Y2VsKFwiZGF0YS9zdHVkZW50cy54bHN4XCIsXG4gIGNvbF9uYW1lcyA9IGMoXCJzdHVkZW50X2lkXCIsIFwiZnVsbF9uYW1lXCIsIFwiZmF2b3VyaXRlX2Zvb2RcIiwgXCJtZWFsX3BsYW5cIiwgXCJhZ2VcIiksXG4gIHNraXAgPSAxXG4pIiwiYXR0ciI6eyJldmFsIjp0cnVlLCJlZGl0Ijp0cnVlfX0=
+</script>
+</div>
+</div>
+</section>
+<section id="excel-daten-aus-dateien-mit-mehreren-tabellenblättern-einlesen" class="slide level2">
+<h2>Excel-Daten aus Dateien mit mehreren Tabellenblättern einlesen</h2>
+<p><br></p>
+<div class="cell">
+<div>
+<div id="webr-19" class="exercise-cell">
+
+</div>
+<script type="webr-19-contents">
+eyJjb2RlIjoiXG5wZW5ndWluc190b3JnZXJzZW4gPC0gcmVhZF9leGNlbChcImRhdGEvcGVuZ3VpbnMueGxzeFwiLCBzaGVldCA9IFwiVG9yZ2Vyc2VuIElzbGFuZFwiLCBuYSA9IFwiTkFcIilcbnBlbmd1aW5zX2Jpc2NvZSA8LSByZWFkX2V4Y2VsKFwiZGF0YS9wZW5ndWlucy54bHN4XCIsIHNoZWV0ID0gXCJCaXNjb2UgSXNsYW5kXCIsIG5hID0gXCJOQVwiKVxucGVuZ3VpbnNfZHJlYW0gIDwtIHJlYWRfZXhjZWwoXCJkYXRhL3Blbmd1aW5zLnhsc3hcIiwgc2hlZXQgPSBcIkRyZWFtIElzbGFuZFwiLCBuYSA9IFwiTkFcIikiLCJhdHRyIjp7ImV2YWwiOnRydWUsImVkaXQiOnRydWV9fQ==
+</script>
+</div>
+</div>
+</section>
+<section id="daten-zu-einem-datensatz-zusammenfügen" class="slide level2">
+<h2>Daten zu einem Datensatz zusammenfügen</h2>
+<p><br></p>
+<div class="cell">
+<div>
+<div id="webr-20" class="exercise-cell">
+
+</div>
+<script type="webr-20-contents">
+eyJjb2RlIjoicGVuZ3VpbnMgPC0gYmluZF9yb3dzKHBlbmd1aW5zX3RvcmdlcnNlbiwgcGVuZ3VpbnNfYmlzY29lLCBwZW5ndWluc19kcmVhbSlcbnBlbmd1aW5zIiwiYXR0ciI6eyJldmFsIjp0cnVlLCJlZGl0Ijp0cnVlfX0=
+</script>
+</div>
+</div>
+</section>
+<section id="unsere-themenliste" class="slide level2">
+<h2>Unsere Themenliste</h2>
+<p><br></p>
+<ol type="1">
+<li><strong>Einführung in R und R-Studio:</strong> <strong>Überblick über die Installations- und Einrichtungsprozesse | Grundlegende Funktionen und Bedienung von R und RStudio</strong></li>
+<li><strong>Grundlagen der Statistiksprache R: Syntax und Datenstrukturen in R | Einführung in Funktionen und Pakete</strong></li>
+<li><strong>Datenmanagement in R: Methoden der Datenorganisation und -vorbereitung | Importieren, Bereinigen und Transformieren von Datensätzen</strong></li>
+<li><strong>Einführung in die Pakete des tidyverse: Überblick über die wichtigsten tidyverse-Pakete wie z.B. dplyr und ggplot2 | Anwendung dieser Pakete zur effizienten Datenanalyse und -visualisierung</strong></li>
+<li><strong>Deskriptive Statistik in R: Berechnung und Interpretation grundlegender statistischer Kennzahlen | Anwendung von deskriptiven Methoden zur Datenexploration | Einführung in die statistische Modellierung am Beispiel linearer Modelle</strong></li>
+<li><strong>Datenvisualisierung in R: Erstellen von publikationsreifen Grafiken und Diagrammen mit ggplot2 | Gestaltung und Interpretation von Datenvisualisierungen zur Unterstützung der Datenanalyse</strong></li>
+</ol>
+<p>Noch offen: Einheitliche und publikationsreife Tabellen (nächste Woche).</p>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
-<p>GitHub-Repo: <a href="https://github.com/dschnitzlein/GDSR_3_Part_1/" class="uri">https://github.com/dschnitzlein/GDSR_3_Part_1/</a></p>
+<p>GitHub-Repo: <a href="https://github.com/dschnitzlein/GDSR_4_Part_1/" class="uri">https://github.com/dschnitzlein/GDSR_4_Part_1/</a></p>
 </div>
 </div>
+<script type="webr-data">
+eyJvcHRpb25zIjp7ImJhc2VVcmwiOiJodHRwczovL3dlYnIuci13YXNtLm9yZy92MC40LjEvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsiZXZhbHVhdGUiLCJrbml0ciIsImh0bWx0b29scyJdLCJyZXBvcyI6W119LCJyZW5kZXJfZGYiOiJkZWZhdWx0In0=
+</script>
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W119
+eyJjb250ZW50cyI6W3sic291cmNlIjoie1xuICAvLyBXYWl0IGZvciBvdXRwdXQgdG8gYmUgd3JpdHRlbiB0byB0aGUgRE9NLCB0aGVuIHRyaWdnZXIgd2lkZ2V0IHJlbmRlcmluZ1xuICBhd2FpdCBfd2Vicl92YWx1ZV8yMDtcbiAgaWYgKHdpbmRvdy5IVE1MV2lkZ2V0cykge1xuICAgIHdpbmRvdy5IVE1MV2lkZ2V0cy5zdGF0aWNSZW5kZXIoKTtcbiAgfVxuICBpZiAod2luZG93LlBhZ2VkVGFibGVEb2MpIHtcbiAgICB3aW5kb3cuUGFnZWRUYWJsZURvYy5pbml0QWxsKCk7XG4gIH1cbn1cbiIsImNlbGxOYW1lIjoid2Vici13aWRnZXQtMjAiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQifSx7InNvdXJjZSI6InZpZXdvZiBfd2Vicl9lZGl0b3JfMjAgPSB7XG4gIGNvbnN0IHsgV2ViUkV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwid2Vici0yMC1jb250ZW50c1xcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGJsb2NrID0gSlNPTi5wYXJzZShiNjREZWNvZGUoc2NyaXB0Q29udGVudCkpO1xuXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKHsgaWQ6IGB3ZWJyLTIwLWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFdlYlJFeGVyY2lzZUVkaXRvcih3ZWJST2pzLndlYlJQcm9taXNlLCBibG9jay5jb2RlLCBvcHRpb25zKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl93ZWJyX3ZhbHVlXzIwID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl8yMCwge30pO1xuIiwiY2VsbE5hbWUiOiJ3ZWJyLTIwIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCJ9LHsic291cmNlIjoie1xuICAvLyBXYWl0IGZvciBvdXRwdXQgdG8gYmUgd3JpdHRlbiB0byB0aGUgRE9NLCB0aGVuIHRyaWdnZXIgd2lkZ2V0IHJlbmRlcmluZ1xuICBhd2FpdCBfd2Vicl92YWx1ZV8xOTtcbiAgaWYgKHdpbmRvdy5IVE1MV2lkZ2V0cykge1xuICAgIHdpbmRvdy5IVE1MV2lkZ2V0cy5zdGF0aWNSZW5kZXIoKTtcbiAgfVxuICBpZiAod2luZG93LlBhZ2VkVGFibGVEb2MpIHtcbiAgICB3aW5kb3cuUGFnZWRUYWJsZURvYy5pbml0QWxsKCk7XG4gIH1cbn1cbiIsImNlbGxOYW1lIjoid2Vici13aWRnZXQtMTkiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQifSx7InNvdXJjZSI6InZpZXdvZiBfd2Vicl9lZGl0b3JfMTkgPSB7XG4gIGNvbnN0IHsgV2ViUkV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwid2Vici0xOS1jb250ZW50c1xcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGJsb2NrID0gSlNPTi5wYXJzZShiNjREZWNvZGUoc2NyaXB0Q29udGVudCkpO1xuXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKHsgaWQ6IGB3ZWJyLTE5LWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFdlYlJFeGVyY2lzZUVkaXRvcih3ZWJST2pzLndlYlJQcm9taXNlLCBibG9jay5jb2RlLCBvcHRpb25zKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl93ZWJyX3ZhbHVlXzE5ID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl8xOSwge30pO1xuIiwiY2VsbE5hbWUiOiJ3ZWJyLTE5IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCJ9LHsic291cmNlIjoie1xuICAvLyBXYWl0IGZvciBvdXRwdXQgdG8gYmUgd3JpdHRlbiB0byB0aGUgRE9NLCB0aGVuIHRyaWdnZXIgd2lkZ2V0IHJlbmRlcmluZ1xuICBhd2FpdCBfd2Vicl92YWx1ZV8xODtcbiAgaWYgKHdpbmRvdy5IVE1MV2lkZ2V0cykge1xuICAgIHdpbmRvdy5IVE1MV2lkZ2V0cy5zdGF0aWNSZW5kZXIoKTtcbiAgfVxuICBpZiAod2luZG93LlBhZ2VkVGFibGVEb2MpIHtcbiAgICB3aW5kb3cuUGFnZWRUYWJsZURvYy5pbml0QWxsKCk7XG4gIH1cbn1cbiIsImNlbGxOYW1lIjoid2Vici13aWRnZXQtMTgiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQifSx7InNvdXJjZSI6InZpZXdvZiBfd2Vicl9lZGl0b3JfMTggPSB7XG4gIGNvbnN0IHsgV2ViUkV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwid2Vici0xOC1jb250ZW50c1xcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGJsb2NrID0gSlNPTi5wYXJzZShiNjREZWNvZGUoc2NyaXB0Q29udGVudCkpO1xuXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKHsgaWQ6IGB3ZWJyLTE4LWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFdlYlJFeGVyY2lzZUVkaXRvcih3ZWJST2pzLndlYlJQcm9taXNlLCBibG9jay5jb2RlLCBvcHRpb25zKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl93ZWJyX3ZhbHVlXzE4ID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl8xOCwge30pO1xuIiwiY2VsbE5hbWUiOiJ3ZWJyLTE4IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCJ9LHsic291cmNlIjoie1xuICAvLyBXYWl0IGZvciBvdXRwdXQgdG8gYmUgd3JpdHRlbiB0byB0aGUgRE9NLCB0aGVuIHRyaWdnZXIgd2lkZ2V0IHJlbmRlcmluZ1xuICBhd2FpdCBfd2Vicl92YWx1ZV8xNztcbiAgaWYgKHdpbmRvdy5IVE1MV2lkZ2V0cykge1xuICAgIHdpbmRvdy5IVE1MV2lkZ2V0cy5zdGF0aWNSZW5kZXIoKTtcbiAgfVxuICBpZiAod2luZG93LlBhZ2VkVGFibGVEb2MpIHtcbiAgICB3aW5kb3cuUGFnZWRUYWJsZURvYy5pbml0QWxsKCk7XG4gIH1cbn1cbiIsImNlbGxOYW1lIjoid2Vici13aWRnZXQtMTciLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQifSx7InNvdXJjZSI6InZpZXdvZiBfd2Vicl9lZGl0b3JfMTcgPSB7XG4gIGNvbnN0IHsgV2ViUkV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwid2Vici0xNy1jb250ZW50c1xcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGJsb2NrID0gSlNPTi5wYXJzZShiNjREZWNvZGUoc2NyaXB0Q29udGVudCkpO1xuXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKHsgaWQ6IGB3ZWJyLTE3LWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFdlYlJFeGVyY2lzZUVkaXRvcih3ZWJST2pzLndlYlJQcm9taXNlLCBibG9jay5jb2RlLCBvcHRpb25zKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl93ZWJyX3ZhbHVlXzE3ID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl8xNywge30pO1xuIiwiY2VsbE5hbWUiOiJ3ZWJyLTE3IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCJ9LHsic291cmNlIjoie1xuICAvLyBXYWl0IGZvciBvdXRwdXQgdG8gYmUgd3JpdHRlbiB0byB0aGUgRE9NLCB0aGVuIHRyaWdnZXIgd2lkZ2V0IHJlbmRlcmluZ1xuICBhd2FpdCBfd2Vicl92YWx1ZV8xNjtcbiAgaWYgKHdpbmRvdy5IVE1MV2lkZ2V0cykge1xuICAgIHdpbmRvdy5IVE1MV2lkZ2V0cy5zdGF0aWNSZW5kZXIoKTtcbiAgfVxuICBpZiAod2luZG93LlBhZ2VkVGFibGVEb2MpIHtcbiAgICB3aW5kb3cuUGFnZWRUYWJsZURvYy5pbml0QWxsKCk7XG4gIH1cbn1cbiIsImNlbGxOYW1lIjoid2Vici13aWRnZXQtMTYiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQifSx7InNvdXJjZSI6InZpZXdvZiBfd2Vicl9lZGl0b3JfMTYgPSB7XG4gIGNvbnN0IHsgV2ViUkV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwid2Vici0xNi1jb250ZW50c1xcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGJsb2NrID0gSlNPTi5wYXJzZShiNjREZWNvZGUoc2NyaXB0Q29udGVudCkpO1xuXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKHsgaWQ6IGB3ZWJyLTE2LWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFdlYlJFeGVyY2lzZUVkaXRvcih3ZWJST2pzLndlYlJQcm9taXNlLCBibG9jay5jb2RlLCBvcHRpb25zKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl93ZWJyX3ZhbHVlXzE2ID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl8xNiwge30pO1xuIiwiY2VsbE5hbWUiOiJ3ZWJyLTE2IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCJ9LHsic291cmNlIjoie1xuICAvLyBXYWl0IGZvciBvdXRwdXQgdG8gYmUgd3JpdHRlbiB0byB0aGUgRE9NLCB0aGVuIHRyaWdnZXIgd2lkZ2V0IHJlbmRlcmluZ1xuICBhd2FpdCBfd2Vicl92YWx1ZV8xNTtcbiAgaWYgKHdpbmRvdy5IVE1MV2lkZ2V0cykge1xuICAgIHdpbmRvdy5IVE1MV2lkZ2V0cy5zdGF0aWNSZW5kZXIoKTtcbiAgfVxuICBpZiAod2luZG93LlBhZ2VkVGFibGVEb2MpIHtcbiAgICB3aW5kb3cuUGFnZWRUYWJsZURvYy5pbml0QWxsKCk7XG4gIH1cbn1cbiIsImNlbGxOYW1lIjoid2Vici13aWRnZXQtMTUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQifSx7InNvdXJjZSI6InZpZXdvZiBfd2Vicl9lZGl0b3JfMTUgPSB7XG4gIGNvbnN0IHsgV2ViUkV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwid2Vici0xNS1jb250ZW50c1xcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGJsb2NrID0gSlNPTi5wYXJzZShiNjREZWNvZGUoc2NyaXB0Q29udGVudCkpO1xuXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKHsgaWQ6IGB3ZWJyLTE1LWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFdlYlJFeGVyY2lzZUVkaXRvcih3ZWJST2pzLndlYlJQcm9taXNlLCBibG9jay5jb2RlLCBvcHRpb25zKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl93ZWJyX3ZhbHVlXzE1ID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl8xNSwge30pO1xuIiwiY2VsbE5hbWUiOiJ3ZWJyLTE1IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCJ9LHsic291cmNlIjoie1xuICAvLyBXYWl0IGZvciBvdXRwdXQgdG8gYmUgd3JpdHRlbiB0byB0aGUgRE9NLCB0aGVuIHRyaWdnZXIgd2lkZ2V0IHJlbmRlcmluZ1xuICBhd2FpdCBfd2Vicl92YWx1ZV8xNDtcbiAgaWYgKHdpbmRvdy5IVE1MV2lkZ2V0cykge1xuICAgIHdpbmRvdy5IVE1MV2lkZ2V0cy5zdGF0aWNSZW5kZXIoKTtcbiAgfVxuICBpZiAod2luZG93LlBhZ2VkVGFibGVEb2MpIHtcbiAgICB3aW5kb3cuUGFnZWRUYWJsZURvYy5pbml0QWxsKCk7XG4gIH1cbn1cbiIsImNlbGxOYW1lIjoid2Vici13aWRnZXQtMTQiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQifSx7InNvdXJjZSI6InZpZXdvZiBfd2Vicl9lZGl0b3JfMTQgPSB7XG4gIGNvbnN0IHsgV2ViUkV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwid2Vici0xNC1jb250ZW50c1xcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGJsb2NrID0gSlNPTi5wYXJzZShiNjREZWNvZGUoc2NyaXB0Q29udGVudCkpO1xuXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKHsgaWQ6IGB3ZWJyLTE0LWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFdlYlJFeGVyY2lzZUVkaXRvcih3ZWJST2pzLndlYlJQcm9taXNlLCBibG9jay5jb2RlLCBvcHRpb25zKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl93ZWJyX3ZhbHVlXzE0ID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl8xNCwge30pO1xuIiwiY2VsbE5hbWUiOiJ3ZWJyLTE0IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCJ9LHsic291cmNlIjoie1xuICAvLyBXYWl0IGZvciBvdXRwdXQgdG8gYmUgd3JpdHRlbiB0byB0aGUgRE9NLCB0aGVuIHRyaWdnZXIgd2lkZ2V0IHJlbmRlcmluZ1xuICBhd2FpdCBfd2Vicl92YWx1ZV8xMztcbiAgaWYgKHdpbmRvdy5IVE1MV2lkZ2V0cykge1xuICAgIHdpbmRvdy5IVE1MV2lkZ2V0cy5zdGF0aWNSZW5kZXIoKTtcbiAgfVxuICBpZiAod2luZG93LlBhZ2VkVGFibGVEb2MpIHtcbiAgICB3aW5kb3cuUGFnZWRUYWJsZURvYy5pbml0QWxsKCk7XG4gIH1cbn1cbiIsImNlbGxOYW1lIjoid2Vici13aWRnZXQtMTMiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQifSx7InNvdXJjZSI6InZpZXdvZiBfd2Vicl9lZGl0b3JfMTMgPSB7XG4gIGNvbnN0IHsgV2ViUkV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwid2Vici0xMy1jb250ZW50c1xcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGJsb2NrID0gSlNPTi5wYXJzZShiNjREZWNvZGUoc2NyaXB0Q29udGVudCkpO1xuXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKHsgaWQ6IGB3ZWJyLTEzLWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFdlYlJFeGVyY2lzZUVkaXRvcih3ZWJST2pzLndlYlJQcm9taXNlLCBibG9jay5jb2RlLCBvcHRpb25zKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl93ZWJyX3ZhbHVlXzEzID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl8xMywge30pO1xuIiwiY2VsbE5hbWUiOiJ3ZWJyLTEzIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCJ9LHsic291cmNlIjoie1xuICAvLyBXYWl0IGZvciBvdXRwdXQgdG8gYmUgd3JpdHRlbiB0byB0aGUgRE9NLCB0aGVuIHRyaWdnZXIgd2lkZ2V0IHJlbmRlcmluZ1xuICBhd2FpdCBfd2Vicl92YWx1ZV8xMjtcbiAgaWYgKHdpbmRvdy5IVE1MV2lkZ2V0cykge1xuICAgIHdpbmRvdy5IVE1MV2lkZ2V0cy5zdGF0aWNSZW5kZXIoKTtcbiAgfVxuICBpZiAod2luZG93LlBhZ2VkVGFibGVEb2MpIHtcbiAgICB3aW5kb3cuUGFnZWRUYWJsZURvYy5pbml0QWxsKCk7XG4gIH1cbn1cbiIsImNlbGxOYW1lIjoid2Vici13aWRnZXQtMTIiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQifSx7InNvdXJjZSI6InZpZXdvZiBfd2Vicl9lZGl0b3JfMTIgPSB7XG4gIGNvbnN0IHsgV2ViUkV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwid2Vici0xMi1jb250ZW50c1xcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGJsb2NrID0gSlNPTi5wYXJzZShiNjREZWNvZGUoc2NyaXB0Q29udGVudCkpO1xuXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKHsgaWQ6IGB3ZWJyLTEyLWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFdlYlJFeGVyY2lzZUVkaXRvcih3ZWJST2pzLndlYlJQcm9taXNlLCBibG9jay5jb2RlLCBvcHRpb25zKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl93ZWJyX3ZhbHVlXzEyID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl8xMiwge30pO1xuIiwiY2VsbE5hbWUiOiJ3ZWJyLTEyIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCJ9LHsic291cmNlIjoie1xuICAvLyBXYWl0IGZvciBvdXRwdXQgdG8gYmUgd3JpdHRlbiB0byB0aGUgRE9NLCB0aGVuIHRyaWdnZXIgd2lkZ2V0IHJlbmRlcmluZ1xuICBhd2FpdCBfd2Vicl92YWx1ZV8xMTtcbiAgaWYgKHdpbmRvdy5IVE1MV2lkZ2V0cykge1xuICAgIHdpbmRvdy5IVE1MV2lkZ2V0cy5zdGF0aWNSZW5kZXIoKTtcbiAgfVxuICBpZiAod2luZG93LlBhZ2VkVGFibGVEb2MpIHtcbiAgICB3aW5kb3cuUGFnZWRUYWJsZURvYy5pbml0QWxsKCk7XG4gIH1cbn1cbiIsImNlbGxOYW1lIjoid2Vici13aWRnZXQtMTEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQifSx7InNvdXJjZSI6InZpZXdvZiBfd2Vicl9lZGl0b3JfMTEgPSB7XG4gIGNvbnN0IHsgV2ViUkV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwid2Vici0xMS1jb250ZW50c1xcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGJsb2NrID0gSlNPTi5wYXJzZShiNjREZWNvZGUoc2NyaXB0Q29udGVudCkpO1xuXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKHsgaWQ6IGB3ZWJyLTExLWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFdlYlJFeGVyY2lzZUVkaXRvcih3ZWJST2pzLndlYlJQcm9taXNlLCBibG9jay5jb2RlLCBvcHRpb25zKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl93ZWJyX3ZhbHVlXzExID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl8xMSwge30pO1xuIiwiY2VsbE5hbWUiOiJ3ZWJyLTExIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCJ9LHsic291cmNlIjoie1xuICAvLyBXYWl0IGZvciBvdXRwdXQgdG8gYmUgd3JpdHRlbiB0byB0aGUgRE9NLCB0aGVuIHRyaWdnZXIgd2lkZ2V0IHJlbmRlcmluZ1xuICBhd2FpdCBfd2Vicl92YWx1ZV8xMDtcbiAgaWYgKHdpbmRvdy5IVE1MV2lkZ2V0cykge1xuICAgIHdpbmRvdy5IVE1MV2lkZ2V0cy5zdGF0aWNSZW5kZXIoKTtcbiAgfVxuICBpZiAod2luZG93LlBhZ2VkVGFibGVEb2MpIHtcbiAgICB3aW5kb3cuUGFnZWRUYWJsZURvYy5pbml0QWxsKCk7XG4gIH1cbn1cbiIsImNlbGxOYW1lIjoid2Vici13aWRnZXQtMTAiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQifSx7InNvdXJjZSI6InZpZXdvZiBfd2Vicl9lZGl0b3JfMTAgPSB7XG4gIGNvbnN0IHsgV2ViUkV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwid2Vici0xMC1jb250ZW50c1xcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGJsb2NrID0gSlNPTi5wYXJzZShiNjREZWNvZGUoc2NyaXB0Q29udGVudCkpO1xuXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKHsgaWQ6IGB3ZWJyLTEwLWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFdlYlJFeGVyY2lzZUVkaXRvcih3ZWJST2pzLndlYlJQcm9taXNlLCBibG9jay5jb2RlLCBvcHRpb25zKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl93ZWJyX3ZhbHVlXzEwID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl8xMCwge30pO1xuIiwiY2VsbE5hbWUiOiJ3ZWJyLTEwIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCJ9LHsic291cmNlIjoie1xuICAvLyBXYWl0IGZvciBvdXRwdXQgdG8gYmUgd3JpdHRlbiB0byB0aGUgRE9NLCB0aGVuIHRyaWdnZXIgd2lkZ2V0IHJlbmRlcmluZ1xuICBhd2FpdCBfd2Vicl92YWx1ZV85O1xuICBpZiAod2luZG93LkhUTUxXaWRnZXRzKSB7XG4gICAgd2luZG93LkhUTUxXaWRnZXRzLnN0YXRpY1JlbmRlcigpO1xuICB9XG4gIGlmICh3aW5kb3cuUGFnZWRUYWJsZURvYykge1xuICAgIHdpbmRvdy5QYWdlZFRhYmxlRG9jLmluaXRBbGwoKTtcbiAgfVxufVxuIiwiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC05IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0In0seyJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzkgPSB7XG4gIGNvbnN0IHsgV2ViUkV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwid2Vici05LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHdlYnItOS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fd2Vicl92YWx1ZV85ID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl85LCB7fSk7XG4iLCJjZWxsTmFtZSI6IndlYnItOSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQifSx7InNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfODtcbiAgaWYgKHdpbmRvdy5IVE1MV2lkZ2V0cykge1xuICAgIHdpbmRvdy5IVE1MV2lkZ2V0cy5zdGF0aWNSZW5kZXIoKTtcbiAgfVxuICBpZiAod2luZG93LlBhZ2VkVGFibGVEb2MpIHtcbiAgICB3aW5kb3cuUGFnZWRUYWJsZURvYy5pbml0QWxsKCk7XG4gIH1cbn1cbiIsImNlbGxOYW1lIjoid2Vici13aWRnZXQtOCIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCJ9LHsic291cmNlIjoidmlld29mIF93ZWJyX2VkaXRvcl84ID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItOC1jb250ZW50c1xcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGJsb2NrID0gSlNPTi5wYXJzZShiNjREZWNvZGUoc2NyaXB0Q29udGVudCkpO1xuXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKHsgaWQ6IGB3ZWJyLTgtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgV2ViUkV4ZXJjaXNlRWRpdG9yKHdlYlJPanMud2ViUlByb21pc2UsIGJsb2NrLmNvZGUsIG9wdGlvbnMpO1xuXG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxuX3dlYnJfdmFsdWVfOCA9IHdlYlJPanMucHJvY2Vzcyhfd2Vicl9lZGl0b3JfOCwge30pO1xuIiwiY2VsbE5hbWUiOiJ3ZWJyLTgiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0In0seyJzb3VyY2UiOiJ7XG4gIC8vIFdhaXQgZm9yIG91dHB1dCB0byBiZSB3cml0dGVuIHRvIHRoZSBET00sIHRoZW4gdHJpZ2dlciB3aWRnZXQgcmVuZGVyaW5nXG4gIGF3YWl0IF93ZWJyX3ZhbHVlXzc7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4iLCJjZWxsTmFtZSI6IndlYnItd2lkZ2V0LTciLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQifSx7InNvdXJjZSI6InZpZXdvZiBfd2Vicl9lZGl0b3JfNyA9IHtcbiAgY29uc3QgeyBXZWJSRXhlcmNpc2VFZGl0b3IsIGI2NERlY29kZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJ3ZWJyLTctY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgd2Vici03LWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFdlYlJFeGVyY2lzZUVkaXRvcih3ZWJST2pzLndlYlJQcm9taXNlLCBibG9jay5jb2RlLCBvcHRpb25zKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl93ZWJyX3ZhbHVlXzcgPSB3ZWJST2pzLnByb2Nlc3MoX3dlYnJfZWRpdG9yXzcsIHt9KTtcbiIsImNlbGxOYW1lIjoid2Vici03IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCJ9LHsic291cmNlIjoie1xuICAvLyBXYWl0IGZvciBvdXRwdXQgdG8gYmUgd3JpdHRlbiB0byB0aGUgRE9NLCB0aGVuIHRyaWdnZXIgd2lkZ2V0IHJlbmRlcmluZ1xuICBhd2FpdCBfd2Vicl92YWx1ZV82O1xuICBpZiAod2luZG93LkhUTUxXaWRnZXRzKSB7XG4gICAgd2luZG93LkhUTUxXaWRnZXRzLnN0YXRpY1JlbmRlcigpO1xuICB9XG4gIGlmICh3aW5kb3cuUGFnZWRUYWJsZURvYykge1xuICAgIHdpbmRvdy5QYWdlZFRhYmxlRG9jLmluaXRBbGwoKTtcbiAgfVxufVxuIiwiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC02IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0In0seyJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzYgPSB7XG4gIGNvbnN0IHsgV2ViUkV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwid2Vici02LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHdlYnItNi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fd2Vicl92YWx1ZV82ID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl82LCB7fSk7XG4iLCJjZWxsTmFtZSI6IndlYnItNiIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQifSx7InNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfNTtcbiAgaWYgKHdpbmRvdy5IVE1MV2lkZ2V0cykge1xuICAgIHdpbmRvdy5IVE1MV2lkZ2V0cy5zdGF0aWNSZW5kZXIoKTtcbiAgfVxuICBpZiAod2luZG93LlBhZ2VkVGFibGVEb2MpIHtcbiAgICB3aW5kb3cuUGFnZWRUYWJsZURvYy5pbml0QWxsKCk7XG4gIH1cbn1cbiIsImNlbGxOYW1lIjoid2Vici13aWRnZXQtNSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCJ9LHsic291cmNlIjoidmlld29mIF93ZWJyX2VkaXRvcl81ID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItNS1jb250ZW50c1xcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGJsb2NrID0gSlNPTi5wYXJzZShiNjREZWNvZGUoc2NyaXB0Q29udGVudCkpO1xuXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKHsgaWQ6IGB3ZWJyLTUtY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgV2ViUkV4ZXJjaXNlRWRpdG9yKHdlYlJPanMud2ViUlByb21pc2UsIGJsb2NrLmNvZGUsIG9wdGlvbnMpO1xuXG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxuX3dlYnJfdmFsdWVfNSA9IHdlYlJPanMucHJvY2Vzcyhfd2Vicl9lZGl0b3JfNSwge30pO1xuIiwiY2VsbE5hbWUiOiJ3ZWJyLTUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0In0seyJzb3VyY2UiOiJ7XG4gIC8vIFdhaXQgZm9yIG91dHB1dCB0byBiZSB3cml0dGVuIHRvIHRoZSBET00sIHRoZW4gdHJpZ2dlciB3aWRnZXQgcmVuZGVyaW5nXG4gIGF3YWl0IF93ZWJyX3ZhbHVlXzQ7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4iLCJjZWxsTmFtZSI6IndlYnItd2lkZ2V0LTQiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQifSx7InNvdXJjZSI6InZpZXdvZiBfd2Vicl9lZGl0b3JfNCA9IHtcbiAgY29uc3QgeyBXZWJSRXhlcmNpc2VFZGl0b3IsIGI2NERlY29kZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJ3ZWJyLTQtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgd2Vici00LWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFdlYlJFeGVyY2lzZUVkaXRvcih3ZWJST2pzLndlYlJQcm9taXNlLCBibG9jay5jb2RlLCBvcHRpb25zKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl93ZWJyX3ZhbHVlXzQgPSB3ZWJST2pzLnByb2Nlc3MoX3dlYnJfZWRpdG9yXzQsIHt9KTtcbiIsImNlbGxOYW1lIjoid2Vici00IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCJ9LHsic291cmNlIjoie1xuICAvLyBXYWl0IGZvciBvdXRwdXQgdG8gYmUgd3JpdHRlbiB0byB0aGUgRE9NLCB0aGVuIHRyaWdnZXIgd2lkZ2V0IHJlbmRlcmluZ1xuICBhd2FpdCBfd2Vicl92YWx1ZV8zO1xuICBpZiAod2luZG93LkhUTUxXaWRnZXRzKSB7XG4gICAgd2luZG93LkhUTUxXaWRnZXRzLnN0YXRpY1JlbmRlcigpO1xuICB9XG4gIGlmICh3aW5kb3cuUGFnZWRUYWJsZURvYykge1xuICAgIHdpbmRvdy5QYWdlZFRhYmxlRG9jLmluaXRBbGwoKTtcbiAgfVxufVxuIiwiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0zIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0In0seyJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzMgPSB7XG4gIGNvbnN0IHsgV2ViUkV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwid2Vici0zLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHdlYnItMy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fd2Vicl92YWx1ZV8zID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl8zLCB7fSk7XG4iLCJjZWxsTmFtZSI6IndlYnItMyIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQifSx7InNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfMjtcbiAgaWYgKHdpbmRvdy5IVE1MV2lkZ2V0cykge1xuICAgIHdpbmRvdy5IVE1MV2lkZ2V0cy5zdGF0aWNSZW5kZXIoKTtcbiAgfVxuICBpZiAod2luZG93LlBhZ2VkVGFibGVEb2MpIHtcbiAgICB3aW5kb3cuUGFnZWRUYWJsZURvYy5pbml0QWxsKCk7XG4gIH1cbn1cbiIsImNlbGxOYW1lIjoid2Vici13aWRnZXQtMiIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCJ9LHsic291cmNlIjoidmlld29mIF93ZWJyX2VkaXRvcl8yID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItMi1jb250ZW50c1xcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGJsb2NrID0gSlNPTi5wYXJzZShiNjREZWNvZGUoc2NyaXB0Q29udGVudCkpO1xuXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKHsgaWQ6IGB3ZWJyLTItY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgV2ViUkV4ZXJjaXNlRWRpdG9yKHdlYlJPanMud2ViUlByb21pc2UsIGJsb2NrLmNvZGUsIG9wdGlvbnMpO1xuXG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxuX3dlYnJfdmFsdWVfMiA9IHdlYlJPanMucHJvY2Vzcyhfd2Vicl9lZGl0b3JfMiwge30pO1xuIiwiY2VsbE5hbWUiOiJ3ZWJyLTIiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0In0seyJzb3VyY2UiOiJ7XG4gIC8vIFdhaXQgZm9yIG91dHB1dCB0byBiZSB3cml0dGVuIHRvIHRoZSBET00sIHRoZW4gdHJpZ2dlciB3aWRnZXQgcmVuZGVyaW5nXG4gIGF3YWl0IF93ZWJyX3ZhbHVlXzE7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4iLCJjZWxsTmFtZSI6IndlYnItd2lkZ2V0LTEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQifSx7InNvdXJjZSI6InZpZXdvZiBfd2Vicl9lZGl0b3JfMSA9IHtcbiAgY29uc3QgeyBXZWJSRXhlcmNpc2VFZGl0b3IsIGI2NERlY29kZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJ3ZWJyLTEtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgd2Vici0xLWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFdlYlJFeGVyY2lzZUVkaXRvcih3ZWJST2pzLndlYlJQcm9taXNlLCBibG9jay5jb2RlLCBvcHRpb25zKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl93ZWJyX3ZhbHVlXzEgPSB3ZWJST2pzLnByb2Nlc3MoX3dlYnJfZWRpdG9yXzEsIHt9KTtcbiIsImNlbGxOYW1lIjoid2Vici0xIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCJ9LHsic291cmNlIjoid2ViUk9qcyA9IHtcbiAgY29uc3QgeyBXZWJSIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lLldlYlI7XG4gIGNvbnN0IHtcbiAgICBXZWJSRXZhbHVhdG9yLFxuICAgIFdlYlJFbnZpcm9ubWVudE1hbmFnZXIsXG4gICAgc2V0dXBSLFxuICAgIGI2NERlY29kZSxcbiAgICBjb2xsYXBzZVBhdGhcbiAgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc3RhdHVzQ29udGFpbmVyID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoXCJleGVyY2lzZS1sb2FkaW5nLXN0YXR1c1wiKTtcbiAgY29uc3QgaW5kaWNhdG9yQ29udGFpbmVyID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoXCJleGVyY2lzZS1sb2FkaW5nLWluZGljYXRvclwiKTtcbiAgaW5kaWNhdG9yQ29udGFpbmVyLmNsYXNzTGlzdC5yZW1vdmUoXCJkLW5vbmVcIik7XG5cbiAgbGV0IHN0YXR1c1RleHQgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KFwiZGl2XCIpXG4gIHN0YXR1c1RleHQuY2xhc3NMaXN0ID0gXCJleGVyY2lzZS1sb2FkaW5nLWRldGFpbHNcIjtcbiAgc3RhdHVzVGV4dCA9IHN0YXR1c0NvbnRhaW5lci5hcHBlbmRDaGlsZChzdGF0dXNUZXh0KTtcbiAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBJbml0aWFsaXNlYDtcblxuICAvLyBIb2lzdCBpbmRpY2F0b3Igb3V0IGZyb20gZmluYWwgc2xpZGUgd2hlbiBydW5uaW5nIHVuZGVyIHJldmVhbFxuICBjb25zdCByZXZlYWxTdGF0dXMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLnJldmVhbCAuZXhlcmNpc2UtbG9hZGluZy1pbmRpY2F0b3JcIik7XG4gIGlmIChyZXZlYWxTdGF0dXMpIHtcbiAgICByZXZlYWxTdGF0dXMucmVtb3ZlKCk7XG4gICAgZG9jdW1lbnQucXVlcnlTZWxlY3RvcihcIi5yZXZlYWwgPiAuc2xpZGVzXCIpLmFwcGVuZENoaWxkKHJldmVhbFN0YXR1cyk7XG4gIH1cblxuICAvLyBNYWtlIGFueSByZXZlYWwgc2xpZGVzIHdpdGggbGl2ZSBjZWxscyBzY3JvbGxhYmxlXG4gIGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3JBbGwoXCIucmV2ZWFsIC5leGVyY2lzZS1jZWxsXCIpLmZvckVhY2goKGVsKSA9PiB7XG4gICAgZWwuY2xvc2VzdCgnc2VjdGlvbi5zbGlkZScpLmNsYXNzTGlzdC5hZGQoXCJzY3JvbGxhYmxlXCIpO1xuICB9KVxuXG4gIC8vIHdlYlIgc3VwcGxlbWVudGFsIGRhdGEgYW5kIG9wdGlvbnNcbiAgY29uc3QgZGF0YUNvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwid2Vici1kYXRhXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgZGF0YSA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKGRhdGFDb250ZW50KSk7XG5cbiAgLy8gR3JhYiBsaXN0IG9mIHJlc291cmNlcyB0byBiZSBkb3dubG9hZGVkXG4gIGNvbnN0IGZpbGVzQ29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJ2ZnMtZmlsZVxcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGZpbGVzID0gSlNPTi5wYXJzZShiNjREZWNvZGUoZmlsZXNDb250ZW50KSk7XG5cbiAgLy8gSW5pdGlhbGlzZSB3ZWJSIGFuZCBzZXR1cCBmb3IgUiBjb2RlIGV2YWx1YXRpb25cbiAgbGV0IHdlYlJQcm9taXNlID0gKGFzeW5jICh3ZWJSKSA9PiB7XG4gICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyB3ZWJSYDtcbiAgICBhd2FpdCB3ZWJSLmluaXQoKTtcblxuICAgIC8vIEluc3RhbGwgcHJvdmlkZWQgbGlzdCBvZiBwYWNrYWdlc1xuICAgIC8vIEVuc3VyZSB3ZWJSIGRlZmF1bHQgcmVwbyBpcyBpbmNsdWRlZFxuICAgIGRhdGEucGFja2FnZXMucmVwb3MucHVzaChcImh0dHBzOi8vcmVwby5yLXdhc20ub3JnXCIpXG4gICAgYXdhaXQgZGF0YS5wYWNrYWdlcy5wa2dzLm1hcCgocGtnKSA9PiAoKSA9PiB7XG4gICAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYERvd25sb2FkaW5nIHBhY2thZ2U6ICR7cGtnfWA7XG4gICAgICByZXR1cm4gd2ViUi5ldmFsUlZvaWQoYFxuICAgICAgICB3ZWJyOjppbnN0YWxsKHBrZywgcmVwb3MgPSByZXBvcylcbiAgICAgICAgbGlicmFyeShwa2csIGNoYXJhY3Rlci5vbmx5ID0gVFJVRSlcbiAgICAgIGAsIHsgZW52OiB7XG4gICAgICAgIHBrZzogcGtnLFxuICAgICAgICByZXBvczogZGF0YS5wYWNrYWdlcy5yZXBvcyxcbiAgICAgIH19KTtcbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcblxuICAgIC8vIERvd25sb2FkIGFuZCBpbnN0YWxsIHJlc291cmNlc1xuICAgIGF3YWl0IGZpbGVzLm1hcCgoZmlsZSkgPT4gYXN5bmMgKCkgPT4ge1xuICAgICAgY29uc3QgbmFtZSA9IGZpbGUuc3Vic3RyaW5nKGZpbGUubGFzdEluZGV4T2YoJy8nKSArIDEpO1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyByZXNvdXJjZTogJHtuYW1lfWA7XG4gICAgICBjb25zdCByZXNwb25zZSA9IGF3YWl0IGZldGNoKGZpbGUpO1xuICAgICAgaWYgKCFyZXNwb25zZS5vaykge1xuICAgICAgICB0aHJvdyBuZXcgRXJyb3IoYENhbid0IGRvd25sb2FkIFxcYCR7ZmlsZX1cXGAuIEVycm9yICR7cmVzcG9uc2Uuc3RhdHVzfTogXCIke3Jlc3BvbnNlLnN0YXR1c1RleHR9XCIuYCk7XG4gICAgICB9XG4gICAgICBjb25zdCBkYXRhID0gYXdhaXQgcmVzcG9uc2UuYXJyYXlCdWZmZXIoKTtcblxuICAgICAgLy8gU3RvcmUgVVJMcyBpbiB0aGUgY3dkIHdpdGhvdXQgYW55IHN1YmRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGlmIChmaWxlLmluY2x1ZGVzKFwiOi8vXCIpKSB7XG4gICAgICAgIGZpbGUgPSBuYW1lO1xuICAgICAgfVxuXG4gICAgICAvLyBDb2xsYXBzZSBoaWdoZXIgZGlyZWN0b3J5IHN0cnVjdHVyZVxuICAgICAgZmlsZSA9IGNvbGxhcHNlUGF0aChmaWxlKTtcblxuICAgICAgLy8gQ3JlYXRlIGRpcmVjdG9yeSB0cmVlLCBpZ25vcmluZyBcImRpcmVjdG9yeSBleGlzdHNcIiBWRlMgZXJyb3JzXG4gICAgICBjb25zdCBwYXJ0cyA9IGZpbGUuc3BsaXQoJy8nKS5zbGljZSgwLCAtMSk7XG4gICAgICBsZXQgcGF0aCA9ICcnO1xuICAgICAgd2hpbGUgKHBhcnRzLmxlbmd0aCA+IDApIHtcbiAgICAgICAgcGF0aCArPSBwYXJ0cy5zaGlmdCgpICsgJy8nO1xuICAgICAgICB0cnkge1xuICAgICAgICAgIGF3YWl0IHdlYlIuRlMubWtkaXIocGF0aCk7XG4gICAgICAgIH0gY2F0Y2ggKGUpIHtcbiAgICAgICAgICBpZiAoIWUubWVzc2FnZS5pbmNsdWRlcyhcIkZTIGVycm9yXCIpKSB7XG4gICAgICAgICAgICB0aHJvdyBlO1xuICAgICAgICAgIH1cbiAgICAgICAgfVxuICAgICAgfVxuXG4gICAgICAvLyBXcml0ZSB0aGlzIGZpbGUgdG8gdGhlIFZGU1xuICAgICAgcmV0dXJuIGF3YWl0IHdlYlIuRlMud3JpdGVGaWxlKGZpbGUsIG5ldyBVaW50OEFycmF5KGRhdGEpKTtcbiAgICB9KS5yZWR1Y2UoKGN1ciwgbmV4dCkgPT4gY3VyLnRoZW4obmV4dCksIFByb21pc2UucmVzb2x2ZSgpKTtcblxuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgSW5zdGFsbGluZyB3ZWJSIHNoaW1zYDtcbiAgICBhd2FpdCB3ZWJSLmV2YWxSVm9pZChgd2Vicjo6c2hpbV9pbnN0YWxsKClgKTtcblxuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgV2ViUiBlbnZpcm9ubWVudCBzZXR1cGA7XG4gICAgYXdhaXQgc2V0dXBSKHdlYlIsIGRhdGEpO1xuXG4gICAgc3RhdHVzVGV4dC5yZW1vdmUoKTtcbiAgICBpZiAoc3RhdHVzQ29udGFpbmVyLmNoaWxkcmVuLmxlbmd0aCA9PSAwKSB7XG4gICAgICBzdGF0dXNDb250YWluZXIucGFyZW50Tm9kZS5yZW1vdmUoKTtcbiAgICB9XG4gICAgcmV0dXJuIHdlYlI7XG4gIH0pKG5ldyBXZWJSKGRhdGEub3B0aW9ucykpO1xuXG4gIC8vIEtlZXAgdHJhY2sgb2YgaW5pdGlhbCBPSlMgYmxvY2sgcmVuZGVyXG4gIGNvbnN0IHJlbmRlcmVkT2pzID0ge307XG5cbiAgY29uc3QgcHJvY2VzcyA9IGFzeW5jIChjb250ZXh0LCBpbnB1dHMpID0+IHtcbiAgICBjb25zdCB3ZWJSID0gYXdhaXQgd2ViUlByb21pc2U7XG4gICAgY29uc3QgZXZhbHVhdG9yID0gbmV3IFdlYlJFdmFsdWF0b3Iod2ViUiwgY29udGV4dClcbiAgICBhd2FpdCBldmFsdWF0b3IucHJvY2VzcyhpbnB1dHMpO1xuICAgIHJldHVybiBldmFsdWF0b3IuY29udGFpbmVyO1xuICB9XG5cbiAgcmV0dXJuIHtcbiAgICBwcm9jZXNzLFxuICAgIHdlYlJQcm9taXNlLFxuICAgIHJlbmRlcmVkT2pzLFxuICB9O1xufVxuIiwiY2VsbE5hbWUiOiJ3ZWJyLXByZWx1ZGUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQifV19
 </script>
 <div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
 <div id="exercise-loading-status" class="d-flex gap-2">
@@ -383,7 +1169,7 @@ eyJjb250ZW50cyI6W119
 </div>
 </div>
 <script type="vfs-file">
-W10=
+WyJkYXRhL3N0dWRlbnRzLnhsc3giLCJkYXRhL3Blbmd1aW5zLnhsc3giLCJkYXRhL3N0dWRlbnRzLmNzdiJd
 </script>
 </section></section>
     </div>
