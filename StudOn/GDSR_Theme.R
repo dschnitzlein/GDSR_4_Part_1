@@ -1,5 +1,6 @@
 GDSR_theme <- function() {
   theme_bw() + theme(
+    
     # Gesamte Abbildung leicht angegrauter Hintergrund
         plot.background = element_rect(fill ="#fafafa"),
         panel.background = element_rect(fill = "#fafafa"),
@@ -16,10 +17,8 @@ GDSR_theme <- function() {
     # Grid-Lines, Rahmen und Achsen-Ticks
     axis.ticks = element_line(colour = "#2A4D69"),
     panel.border = element_rect(colour = "#2A4D69", fill = NA, linetype = 2),
-    panel.grid.major.x = element_line(colour = "#2A4D69", linetype = 3, size = 0.5),
-    panel.grid.minor.x = element_blank(),
-    panel.grid.major.y =  element_line(colour = "#2A4D69", linetype = 3, size = 0.5),
-    panel.grid.minor.y = element_blank(),
+    panel.grid.major = element_line(colour = "#2A4D69", linetype = 3, size = 0.5),
+    panel.grid.minor = element_blank(),
     
     # Legende platzieren
     legend.position = "top",
@@ -42,6 +41,5 @@ ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
        subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins", 
        x = "Flipper length (mm)", 
        y = "Body mass (g)", 
-       color = "Species", 
        shape = "Species") + 
   GDSR_theme()
